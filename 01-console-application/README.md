@@ -65,7 +65,7 @@ namespace MyApp
     }
 }
 ```
-Run the application. You should see *"Hello World and Good Bye!"* in a terminal window. However it is usually more convenient to keep the `using` lines since by having them you are able to use everything from that namespace (in this exaple it is `System`) without the need of prefixing everything with the name of it.
+Run the application. You should see *"Hello World and Good Bye!"* in a terminal window. However it is usually more convenient to keep the `using` lines since by having them you are able to use everything from that namespace (in this example it is `System`) without the need of prefixing everything with the name of it.
 
 ### Step 2
 ```csharp 
@@ -155,7 +155,7 @@ Run the application. Instead of *"Hello World and Good Bye!"* in a terminal wind
 ```csharp 
 Console.WriteLine("Hello World and Good Bye!");
 ```
-`Console` is a class (we will get to what a class is later) from `System` namespace that represents the standart input, output and error streams for console applications. `WriteLine` is a method that writes provided text to console.
+`Console` is a class (we will get to what a class is later) from `System` namespace that represents the standard input, output and error streams for console applications. `WriteLine` is a method that writes provided text to console.
 
 Change from: 
 ```csharp
