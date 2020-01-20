@@ -155,7 +155,7 @@ Run the application. Instead of *"Hello World and Good Bye!"* in a terminal wind
 ```csharp 
 Console.WriteLine("Hello World and Good Bye!");
 ```
-`Console` is a class (we will get to what a class is later) from `System` namespace that represents the standart input, output and error streams for console applications.
+`Console` is a class (we will get to what a class is later) from `System` namespace that represents the standart input, output and error streams for console applications. `WriteLine` is a method that writes provided text to console.
 
 Change from: 
 ```csharp
