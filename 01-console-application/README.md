@@ -188,3 +188,43 @@ namespace MyApp
 }
 ```
 Run the application. You should see *"It's a me, Mario!"* in a terminal window.
+
+## Exercise 1.2: print your input to the console
+
+During this exercise you will print your console input line back to the same console.
+
+### Step 1
+Store your console input into variable. For now imagine variables as a way of storing information in your computer memory:
+```csharp
+static void Main(string[] args)
+{
+    var line = Console.ReadLine();
+    Console.WriteLine("Hello World and Good Bye!");
+}
+```
+You have created a variable `line` that is going to store your console input.
+
+### Step 2
+Write your console input back to console:
+```csharp
+static void Main(string[] args)
+{
+    var line = Console.ReadLine();
+    Console.WriteLine(line);
+}
+```
+### Step 3
+Run the application. Enter *"My random text"* (or any other text) into console and press Enter. You should see the same text printed back to you in console.
+
+# Additional exercises
+
+## Exercise 1.3: ask for input and print your input back to the console with "Result: " prefix
+
+Your console should look like this:
+```
+Please enter text:
+Hello!
+Result: Hello!
+```
+
+## Exercise 1.4: write your text to console in green colour
