@@ -35,7 +35,7 @@ using System;
 ```
 `using` directive allows the use of types in a namespace (we will get to that later) so that you do not have to qualify the use of a type in that namespace. In this application we need to use `System` namespace since the `Console` part is from `System` namespace. 
 
-Try to remove `using System` line. You will see your compiler "complaining" (word Console marked in red). 
+Try to remove `using System` line. You will see your compiler "complaining" - word Console marked in red. 
 
 Change from: 
 ```csharp
@@ -205,7 +205,7 @@ static void Main(string[] args)
 You have created a variable `line` that is going to store your console input.
 
 ### Step 2
-Write your console input back to console:
+Write your console input back to the console:
 ```csharp
 static void Main(string[] args)
 {
@@ -214,7 +214,7 @@ static void Main(string[] args)
 }
 ```
 ### Step 3
-Run the application. Enter *"My random text"* (or any other text) into console and press Enter. You should see the same text printed back to you in console.
+Run the application. Enter *"My random text"* (or any other text) into the console and press Enter. You should see the same text printed back to you in the console.
 
 # Additional exercises
 
@@ -227,4 +227,4 @@ Hello!
 Result: Hello!
 ```
 
-## Exercise 1.4: write your text to console in green colour
+## Exercise 1.4: write your text to the console in green colour
