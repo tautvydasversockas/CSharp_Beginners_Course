@@ -2,8 +2,6 @@
 
 A console application is a computer program that is designed to be used via text-only computer interface such as text terminal, the command line interface of some operating systems (Unix, DOS, etc.) or the text-based interface, such as Win32 console in Microsoft Windows, Terminal in macOS and xterm in Unix. 
 
-## Overview
-
 In this chapter you will explore a console application written in C#. 
 
 ## Exercise 1.1: create a new "Hello World" console application
