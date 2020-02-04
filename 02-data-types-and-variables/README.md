@@ -156,3 +156,25 @@ static void Main(string[] args)
 ```
 ### Step 4
 Run the application. You should see a second letter of your given word written back to the console.
+
+## Exercise 2.4: create an empty Blazor web application for animal shelter project.
+During the course you will be building an animal shelter web application. Let's begin!
+### Step 1
+Open the terminal and browse to your workspace directory by executing the following commands:
+```
+$ mkdir C:/AnimalShelter; cd C:/AnimalShelter
+```
+`mkdir` is used to create a folder while `cd` is used to browse to the folder.
+### Step 2
+Type the following command to create a default Blazor web application:
+```
+$ dotnet new blazor
+```
+### Step 3
+Open the application in Visual Studio Code:
+```
+$ code .
+```
+### Step 4
+Select debug tab of Visual Studio Code and click `Start Debugging` or click `F5`. You should see the application opened in your web browser. Feel free to explore it by clicking different tabs, buttons. Congratulations - you have just created your first web application.
+
