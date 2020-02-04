@@ -35,6 +35,10 @@ Your console should look like this:
 ```
 John: 19
 ```
+<details>
+<summary>Solution</summary>
+<p>
+    
 ### Step 1
 Store your name and age into a separate variables:
 ```csharp
@@ -69,6 +73,9 @@ static void Main(string[] args)
 ### Step 4
 Run the application. You should see your name and age in the console.
 
+</p>
+</details>
+
 ## Exercise 2.2: create an application that reads two integer numbers from the console, multiplies them with each other and writes the result back to the console.
 
 Your console should look like this:
@@ -79,6 +86,10 @@ Please enter second number:
 5
 Result: 20
 ```
+<details>
+<summary>Solution</summary>
+<p>
+    
 ### Step 1
 Read both numbers from the console:
 ```csharp
@@ -119,6 +130,9 @@ static void Main(string[] args)
 ### Step 4
 Run the application. You should see the console application multiplying your provided numbers.
 
+</p>
+</details>
+
 ## Exercise 2.3: create an application that reads a word from the console and writes back the 2nd letter back to the console. For now provide words only longer than 2 letters.
 
 Your console should look like this:
@@ -126,6 +140,10 @@ Your console should look like this:
 YourWord
 o
 ```
+<details>
+<summary>Solution</summary>
+<p>
+    
 ### Step 1
 Read the word from the console:
 ```csharp
@@ -157,8 +175,17 @@ static void Main(string[] args)
 ### Step 4
 Run the application. You should see a second letter of your given word written back to the console.
 
+</p>
+</details>
+
 ## Exercise 2.4: create an empty Blazor web application for animal shelter project.
-During the course you will be building an animal shelter web application. Let's begin!
+
+During the course you will be building an animal shelter web application.
+
+<details>
+<summary>Solution</summary>
+<p>
+    
 ### Step 1
 Open the terminal and browse to your workspace directory by executing the following commands:
 ```
@@ -178,3 +205,5 @@ $ code .
 ### Step 4
 Select debug tab of Visual Studio Code and click `Start Debugging` or click `F5`. You should see the application opened in your web browser. Feel free to explore it by clicking different tabs, buttons. Congratulations - you have just created your first web application.
 
+</p>
+</details>
