@@ -239,7 +239,7 @@ Rename menu item `Counter` to `Animal Registration`.
 
 Rename `Click me` to `Add animal`, add button `Remove animal` and implemet the logic behind it. `Remove Animal` should decrement our animal count. 
 
-Please make sure that methods (a code block that contains a series of statements), variables and files themselves are named properly and their names represent their purpose.
+Please make sure that methods (code blocks that contain series of statements), variables and files themselves are named properly and their names represent their purpose.
 
 Instead of `Current count:` display `Currently we have *animal number goes here* animals`
 
@@ -253,7 +253,6 @@ Change text `Counter` to `Animal Registration` in `NavMenu.razor` file under `Sh
 ```html
 ...
 <span class="oi oi-plus" aria-hidden="true"></span> Animal Registration
-
 ...
 ```
 `NavMenu.razor` file represents our menu.
@@ -262,7 +261,7 @@ Change text `Counter` to `Animal Registration` in `NavMenu.razor` file under `Sh
 Rename file `Counter.razor` to `AnimalRegistration.razor`.
 Change first line of the file to `@page "/animalregistration"`.
 Change menu item in `NavMenu.razor` to point to the new page name which is `animalregistration`.
-```htlm
+```html
 <NavLink class="nav-link" href="animalregistration">
     <span class="oi oi-plus" aria-hidden="true"></span> Animal Registration
 </NavLink>
@@ -280,7 +279,7 @@ In `AnimalRegistration.razor` rename methods and variables:
 - Rename method `IncrementCount` to `AddAnimal`.
 - Rename button to `Add animal`.
 
-We also have to rename those methods and variables in all places they are used.
+We also have to rename those methods and variables in all places they are used:
 ```cshtml
 @page "/animalregistration"
 
