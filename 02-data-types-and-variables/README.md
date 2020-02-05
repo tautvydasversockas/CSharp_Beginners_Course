@@ -208,36 +208,38 @@ Select debug tab of Visual Studio Code and click `Start Debugging` or click `F5`
 </p>
 </details>
 
-## Exercise 2.5: let's make it look more like animal shelter page
-
-Update home page text for it to be more "animal shelter like".
+## Exercise 2.5: update home page text for it to be more "animal shelter like"
 
 <details>
 <summary>Solution</summary>
 <p>
 
-You need to update `Index.razor` file in folder `Pages`. This is the file that represents our home page. Updated page file should look like this:
+### Step 1
+Update `Index.razor` file in folder `Pages`:
 
-```
+```cshtml
 @page "/"
 
 <h1>Welcome to our animal shelter page!</h1>
 
-Here you can adopt you future pet.
+Here you can adopt your future pet.
 
 ```
+
+`Index.razor` is the file that represents our home page.
 
 </p>
 </details>
 
 ## Exercise 2.6: make animal registration page
 
-Use `Counter` page as a base for the task as it is very similar to the initial version of `Animal Registration` page.
+Use `Counter` page as a base for the task.
 
 Rename menu item `Counter` to `Animal Registration`.
 
-Update page to count animals, rename `Click me` to `Add animal`, add button `Remove animal` and implemet the logic behind it. 
-Please make sure that methods, variables and files themselves are named properly and their names represent their purpose.
+Rename `Click me` to `Add animal`, add button `Remove animal` and implemet the logic behind it. `Remove Animal` should decrement our animal count. 
+
+Please make sure that methods (a code block that contains a series of statements), variables and files themselves are named properly and their names represent their purpose.
 
 Instead of `Current count:` display `Currently we have *animal number goes here* animals`
 
@@ -246,39 +248,40 @@ Instead of `Current count:` display `Currently we have *animal number goes here*
 <p>
 
 ### Step 1
-Rename `Counter` to `Animal Registration` in `NavMenu.razor` file under `Shared` folder. This file represents our menu. After update your updated line should look like this:
+Change text `Counter` to `Animal Registration` in `NavMenu.razor` file under `Shared` folder:
 
-```
+```html
+...
 <span class="oi oi-plus" aria-hidden="true"></span> Animal Registration
 
+...
 ```
+`NavMenu.razor` file represents our menu.
 
 ### Step 2
 Rename file `Counter.razor` to `AnimalRegistration.razor`.
 Change first line of the file to `@page "/animalregistration"`.
-Change menu item in `NavMenu.razor` to point to the new page name which makes more sense.
-```
+Change menu item in `NavMenu.razor` to point to the new page name which is `animalregistration`.
+```htlm
 <NavLink class="nav-link" href="animalregistration">
     <span class="oi oi-plus" aria-hidden="true"></span> Animal Registration
 </NavLink>
 ```
-We do this so our names make more sense and it's easy to understand file purpose from it's name.
+We use purposeful names for files and code so that other developers who will read your code would have an easier time understanding it. Also, for yourself when you return to the code after some time.
 
-Setting first line of our page code to `@page "/animalregistration"` will make the page available under this path. Please note the URL of the page when you're on animal registration page. We also have to update `href` on our menu item so it knows where to point us when we click menu item.
+Setting first line of our page code to `@page "/animalregistration"` will make the page available under this path (note the URL of the page when you're on animal registration page).
+
+We also have to update `href` on our menu item so the code knows where to point us when we click menu item.
 
 ### Step 3
-Update text according to the excercise.
+In `AnimalRegistration.razor` rename methods and variables:
 
-In `AnimalRegistration.razor` rename methods and variables so they make more sense.
+- Rename `currentCount` variable to `animalCount`.
+- Rename method `IncrementCount` to `AddAnimal`.
+- Rename button to `Add animal`.
 
-Rename `currentCount` variable to `animalCount`.
-
-Rename method `IncrementCount` to `AddAnimal`.
-
-Rename button to `Add animal`.
-
-We also have to rename those in all places they are used. The code should look like this:
-```
+We also have to rename those methods and variables in all places they are used.
+```cshtml
 @page "/animalregistration"
 
 <h1>Animal Registration</h1>
@@ -297,51 +300,55 @@ We also have to rename those in all places they are used. The code should look l
 }
 
 ```
-This is done for other developers who are going to read your code to understand it better. Also, for yourself when you will return to it after some time and won't remember what you were doing there.
+Proper naming is extremelly important in programming.
 
 ### Step 4
-Add method for handling animal removal. It might look something like this:
-```
+Add method for handling animal removal:
+```csharp
 private void RemoveAnimal()
 {
     animalCount--;
 }
 ```
-Here we decrement `animalCount`. This method is going to be used in our `Remove animal` button.
+Don't worry if you still don't understand what method is. We're going to come back to it later.
+In `RemoveAnimal` method we decrement variable `animalCount`.
 
 ### Step 5
-Add button `Remove animal`. Very similar to `Add animal` button. Don't forget to set onclick method to `RemoveAnimal`. It might look like this:
+Add button `Remove animal`. Very similar to `Add animal` button. Don't forget to set onclick method to `RemoveAnimal`:
 
-```
+```cshtml
+...
 <button class="btn btn-primary" @onclick="RemoveAnimal">Remove animal</button>
+...
 ```
 Here we added button with text `Remove animal` which executes method `RemoveAnimal` when clicked.
+
+### Step 6
+Run the application and try out the new animal registration page.
 
 </p>
 </details>
 
-## Exercise 2.7: add current date to animal registration page
-In this excercise you have to update animal registration page so it displays current date together with animal count.
+## Exercise 2.7: show current date in animal registration page.
 
-It should look like this:
-
+Instead of:
 ```
-At 2020-02-05 we have 5 animals.
+Currently we have 5 animals
+```
+we should see:
+```
+At 2020-02-05 we have 5 animals
 ```
 
 <details>
 <summary>Solution</summary>
 
-You can use `DateTime` struct like this:
+You can use `DateTime` type like this:
 
-```
+```cshtml
 <p>At @DateTime.Today.ToShortDateString() we have @animalCount animals.</p>
 ```
 
-Here we are accessing `Today` property of `DateTime` struct. It always returns us current date.
-
-But when Today gets converted to string it also displays us time. So instead of 2020-02-04 we are getting 2020-02-04 00:00:00.
-
-To fix this we can use `ToShortDateString` method on `Today`. This method returns date as a string without time part.
+We can access current date by calling `Today` from type `DateTime`. When Today gets converted (automatically) from type `DateTime` to type `String` it displays time as zeros - instead of "2020-02-04" we get "2020-02-04 00:00:00". To fix this we use `ToShortDateString` method which returns date as a type `String` without time part.
 
 </details>
