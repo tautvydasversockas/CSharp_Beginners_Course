@@ -207,3 +207,147 @@ Select debug tab of Visual Studio Code and click `Start Debugging` or click `F5`
 
 </p>
 </details>
+
+## Exercise 2.5: update home page text for it to be more "animal shelter like"
+
+<details>
+<summary>Solution</summary>
+<p>
+
+### Step 1
+Update `Index.razor` file in folder `Pages`:
+
+```cshtml
+@page "/"
+
+<h1>Welcome to our animal shelter page!</h1>
+
+Here you can adopt your future pet.
+
+```
+
+`Index.razor` is the file that represents our home page.
+
+</p>
+</details>
+
+## Exercise 2.6: make animal registration page
+
+Use `Counter` page as a base for the task.
+
+Rename menu item `Counter` to `Animal Registration`.
+
+Rename `Click me` to `Add animal`, add button `Remove animal` and implement the logic behind it. `Remove Animal` should decrement our animal count. 
+
+Please make sure that methods (code blocks that contain series of statements), variables and files themselves are named properly and their names represent their purpose.
+
+Instead of `Current count:` display `Currently we have *animal number goes here* animals`
+
+<details>
+<summary>Solution</summary>
+<p>
+
+### Step 1
+Change text `Counter` to `Animal Registration` in `NavMenu.razor` file under `Shared` folder:
+
+```html
+...
+<span class="oi oi-plus" aria-hidden="true"></span> Animal Registration
+...
+```
+`NavMenu.razor` file represents our menu.
+
+### Step 2
+Rename file `Counter.razor` to `AnimalRegistration.razor`.
+Change first line of the file to `@page "/animalregistration"`.
+Change menu item in `NavMenu.razor` to point to the new page name which is `animalregistration`.
+```html
+<NavLink class="nav-link" href="animalregistration">
+    <span class="oi oi-plus" aria-hidden="true"></span> Animal Registration
+</NavLink>
+```
+We use purposeful names for files and code so that other developers who will read your code would have an easier time understanding it. Also, for yourself when you return to the code after some time.
+
+Setting first line of our page code to `@page "/animalregistration"` will make the page available under this path (note the URL of the page when you're on animal registration page).
+
+We also have to update `href` on our menu item so the code knows where to point us when we click menu item.
+
+### Step 3
+In `AnimalRegistration.razor` rename methods and variables:
+
+- Rename `currentCount` variable to `animalCount`.
+- Rename method `IncrementCount` to `AddAnimal`.
+- Rename button to `Add animal`.
+
+We also have to rename those methods and variables in all places they are used:
+```cshtml
+@page "/animalregistration"
+
+<h1>Animal Registration</h1>
+
+<p>Currently we have @animalCount animals</p>
+
+<button class="btn btn-primary" @onclick="AddAnimal">Add Animal</button>
+
+@code {
+    private int animalCount = 0;
+
+    private void AddAnimal()
+    {
+        animalCount++;
+    }
+}
+
+```
+Proper naming is extremely important in programming.
+
+### Step 4
+Add method for handling animal removal:
+```csharp
+private void RemoveAnimal()
+{
+    animalCount--;
+}
+```
+Don't worry if you still don't understand what method is. We're going to come back to it later.
+In `RemoveAnimal` method we decrement variable `animalCount`.
+
+### Step 5
+Add button `Remove animal`. Very similar to `Add animal` button. Don't forget to set onclick method to `RemoveAnimal`:
+
+```cshtml
+...
+<button class="btn btn-primary" @onclick="RemoveAnimal">Remove animal</button>
+...
+```
+Here we added button with text `Remove animal` which executes method `RemoveAnimal` when clicked.
+
+### Step 6
+Run the application and try out the new animal registration page.
+
+</p>
+</details>
+
+## Exercise 2.7: show current date in animal registration page.
+
+Instead of:
+```
+Currently we have 5 animals
+```
+we should see:
+```
+At 2020-02-05 we have 5 animals
+```
+
+<details>
+<summary>Solution</summary>
+
+You can use `DateTime` type like this:
+
+```cshtml
+<p>At @DateTime.Today.ToShortDateString() we have @animalCount animals.</p>
+```
+
+We can access current date by calling `Today` from type `DateTime`. When Today gets converted (automatically) from type `DateTime` to type `String` it displays time as zeros - instead of "2020-02-04" we get "2020-02-04 00:00:00". To fix this we use `ToShortDateString` method which returns date as a type `String` without time part.
+
+</details>
