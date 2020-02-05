@@ -237,7 +237,7 @@ Use `Counter` page as a base for the task.
 
 Rename menu item `Counter` to `Animal Registration`.
 
-Rename `Click me` to `Add animal`, add button `Remove animal` and implemet the logic behind it. `Remove Animal` should decrement our animal count. 
+Rename `Click me` to `Add animal`, add button `Remove animal` and implement the logic behind it. `Remove Animal` should decrement our animal count. 
 
 Please make sure that methods (code blocks that contain series of statements), variables and files themselves are named properly and their names represent their purpose.
 
@@ -299,7 +299,7 @@ We also have to rename those methods and variables in all places they are used:
 }
 
 ```
-Proper naming is extremelly important in programming.
+Proper naming is extremely important in programming.
 
 ### Step 4
 Add method for handling animal removal:
