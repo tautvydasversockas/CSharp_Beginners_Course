@@ -178,7 +178,7 @@ namespace MyApp
 {
     class Program
     {
-        static void MyCustomName(string[] args)
+        static void Main(string[] args)
         {
             Console.WriteLine("It's a me, Mario!");
         }
