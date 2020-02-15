@@ -71,7 +71,7 @@ static void Main(string[] args)
 }
 ```
 ### Step 4
-Run the application. You should see your name and age in the console.
+Run the application.
 
 </p>
 </details>
@@ -128,7 +128,7 @@ static void Main(string[] args)
 }
 ```
 ### Step 4
-Run the application. You should see the console application multiplying your provided numbers.
+Run the application.
 
 </p>
 </details>
@@ -173,7 +173,7 @@ static void Main(string[] args)
 }
 ```
 ### Step 4
-Run the application. You should see a second letter of your given word written back to the console.
+Run the application.
 
 </p>
 </details>
@@ -191,7 +191,7 @@ Open the terminal and browse to your workspace directory by executing the follow
 ```
 $ mkdir C:/AnimalShelter; cd C:/AnimalShelter
 ```
-`mkdir` is used to create a folder while `cd` is used to browse to the folder.
+`mkdir` is used to create a folder `C:/AnimalShelter` while `cd` is used to browse to the folder `C:/AnimalShelter`. If for some reason you want to create a folder in a differnet directory or you don't have a C disk - change`C:/AnimalShelter` part to your desired directory path.
 ### Step 2
 Type the following command to create a default Blazor web application:
 ```
@@ -202,8 +202,9 @@ Open the application in Visual Studio Code:
 ```
 $ code .
 ```
+If this doesn't work - open your application folder manually by using `File -> Open Folder` in Visual Studio Code.
 ### Step 4
-Select debug tab of Visual Studio Code and click `Start Debugging` or click `F5`. You should see the application opened in your web browser. Feel free to explore it by clicking different tabs, buttons. Congratulations - you have just created your first web application.
+In order to run the application select debug tab of Visual Studio Code and click `Start Debugging` or click `F5` or write `dotnet run` in a Terminal window. You should see the application opened in your web browser. If this doesn't happen - browse to https://localhost:5001. If you see some error messages about safety and certificates try using http://localhost:5000 instead. Feel free to explore it by clicking different tabs, buttons. Congratulations - you have just created your first web application.
 
 </p>
 </details>
@@ -323,7 +324,7 @@ Add button `Remove animal`. Very similar to `Add animal` button. Don't forget to
 Here we added button with text `Remove animal` which executes method `RemoveAnimal` when clicked.
 
 ### Step 6
-Run the application and try out the new animal registration page.
+Run the application.
 
 </p>
 </details>
