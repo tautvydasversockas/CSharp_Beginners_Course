@@ -115,7 +115,7 @@ Run the application.
 </p>
 </details>
 
-## Exercise 3.2: create an application that reads a name and age from the console and writes back if the name and age are the same as yours.
+## Exercise 3.2: create an application that reads a name and an age from the console and writes if the name and age are the same as yours.
 
 If your name is "Jonh", your age is 19 and given values are the same your console should look like this:
 ```
@@ -183,6 +183,73 @@ static void Main(string[] args)
 }
 ```
 ### Step 4
+Run the application.
+
+</p>
+</details>
+
+## Exercise 3.3: create an application that reads a country name and an age from the console and writes to the console if it's legal to drink beer in that country at that age. 
+In Lithuania the legal drinking age is 20. In Denmark the legal drinking age is 16. If provided country is not Lithuania or Denmark your application should write that the legal drinking age is unknown. Use `switch` statement.
+
+If provided country is Lithuania and provided age is greater or equal to 20 your console should look like this:
+```
+Please enter a country name:
+Lithuania
+Please enter your age:
+20
+You can legally drink beer.
+```
+
+<details>
+<summary>Solution</summary>
+<p>
+    
+### Step 1
+Read a country name and an age from the console:
+```csharp
+static void Main(string[] args)
+{
+    Console.WriteLine("Please enter a country name:");
+    var country = Console.ReadLine();
+    
+    Console.WriteLine("Please enter your age:");
+    var age = int.Parse(Console.ReadLine());
+}
+```
+### Step 2
+Write a `switch` statement and combine it with `if-else` to check the legal drinking age:
+```csharp
+static void Main(string[] args)
+{
+    Console.WriteLine("Please enter a country name:");
+    var country = Console.ReadLine();
+    
+    Console.WriteLine("Please enter your age:");
+    var age = int.Parse(Console.ReadLine());
+    
+    switch (country)
+    {
+        case "Lithuania":
+            if (age >= 20)
+                Console.WriteLine("You can legally drink beer.");
+            else
+                Console.WriteLine("You can't legally drink beer.");
+            break;
+
+        case "Denmark":
+            if (age >= 16)
+                Console.WriteLine("You can legally drink beer.");
+            else
+                Console.WriteLine("You can't legally drink beer.");
+            break;
+
+        default:
+            Console.WriteLine("The legal drinking age is unknown.");
+            break;
+    }
+}
+```
+### Step 3
 Run the application.
 
 </p>
