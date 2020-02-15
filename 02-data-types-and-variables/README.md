@@ -109,8 +109,10 @@ static void Main(string[] args)
 {
     Console.WriteLine("Please enter first number:");
     var number1 = int.Parse(Console.ReadLine());
+    
     Console.WriteLine("Please enter second number:");
     var number2 = int.Parse(Console.ReadLine());
+    
     var result = number1 * number2;
 }
 ```
@@ -121,8 +123,10 @@ static void Main(string[] args)
 {
     Console.WriteLine("Please enter first number:");
     var number1 = int.Parse(Console.ReadLine());
+    
     Console.WriteLine("Please enter second number:");
     var number2 = int.Parse(Console.ReadLine());
+    
     var result = number1 * number2;
     Console.WriteLine("Result: " + result);
 }
