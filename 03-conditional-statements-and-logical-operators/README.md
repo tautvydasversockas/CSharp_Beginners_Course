@@ -68,7 +68,7 @@ else
 }
 ```
 
-## Exercise 3.1: create an application that reads an integer number from the console and writes back to the console if it is greater or equal to 5.
+## Exercise 3.1: create an application that reads an integer number from the console and writes to the console if the number is lower or greater or equal to 5.
 
 Your console should look like this if the number is lower than 5:
 ```
@@ -82,8 +82,40 @@ Please enter number:
 6
 The number is greater or equal to 5.
 ```
+<details>
+<summary>Solution</summary>
+<p>
+    
+### Step 1
+Read an integer from the console:
+```csharp
+static void Main(string[] args)
+{
+    Console.WriteLine("Please enter number:");
+    var number = int.Parse(Console.ReadLine());
+}
+```
+### Step 2
+Write `if-else` statement to check if the number is lower or greater or equal to 5:
+```csharp
+static void Main(string[] args)
+{
+    Console.WriteLine("Please enter number:");
+    var number = int.Parse(Console.ReadLine());
+    
+    if (number < 5)
+        Console.WriteLine("The number is lower than 5.");
+    else
+        Console.WriteLine("The number is greater or equal to 5.");
+}
+```
+### Step 3
+Run the application.
 
-## Exercise 3.2: create an application that reads a name and age from the console and writes back if the name and age is the same as yours.
+</p>
+</details>
+
+## Exercise 3.2: create an application that reads a name and age from the console and writes back if the name and age are the same as yours.
 
 If your name is "Jonh", your age is 19 and given values are the same your console should look like this:
 ```
@@ -91,7 +123,7 @@ Please enter your name:
 John
 Please enter your age:
 19
-Wow, you are like me!
+Wow, you are me!
 ```
 and if the given values are different:
 ```
@@ -99,5 +131,59 @@ Please enter your name:
 Tim
 Please enter your age:
 19
-You are completely different than me!
+You are not me!
 ```
+
+<details>
+<summary>Solution</summary>
+<p>
+    
+### Step 1
+Define your age and name:
+```csharp
+static void Main(string[] args)
+{
+    var myName = "John";
+    var myAge = 19;
+}
+```
+### Step 2
+Read a name and an age from the console:
+```csharp
+static void Main(string[] args)
+{
+    var myName = "John";
+    var myAge = 19;
+    
+    Console.WriteLine("Please enter your name:");
+    var name = Console.ReadLine();
+    
+    Console.WriteLine("Please enter your age:");
+    var age = int.Parse(Console.ReadLine());
+}
+```
+### Step 3
+Write `if-else` statement using `AND` operator to check if provided name and age are the same as yours:
+```csharp
+static void Main(string[] args)
+{
+    var myName = "John";
+    var myAge = 19;
+    
+    Console.WriteLine("Please enter your name:");
+    var name = Console.ReadLine();
+    
+    Console.WriteLine("Please enter your age:");
+    var age = int.Parse(Console.ReadLine());
+    
+    if (name == myName && age == myAge)
+        Console.WriteLine("Wow, you are me!");
+    else
+        Console.WriteLine("You are not me!");
+}
+```
+### Step 4
+Run the application.
+
+</p>
+</details>
