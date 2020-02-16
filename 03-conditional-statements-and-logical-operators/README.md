@@ -409,3 +409,122 @@ Here we just return animalCount in string representation.
 
 Run the application and test if it works as expected. Check if text displayed on the screen is correct in all cases.
 </details>
+
+## Exercise 3.6: add business hours to your home page and display "We are opened right now" if we are in business hours right now and "We are closed right now" otherwise
+
+Your page should look like this:
+
+`We are open every workday from 8:00 - 17:00`
+
+`We are closed right now.`
+
+<details>
+<summary>Solution</summary>
+
+### Step 1
+
+To the text on the `Index.razor` file add this text
+
+```cshtml
+<p>We are open every workday from 8:00 - 17:00</p>
+
+<p>We are  right now.</p>
+```
+
+`<p></p>` this defines our paragraph. Text that we put inside this will be in a separate paragraph.
+
+Note that we left space empty where `opened` or `closed` should be displayed. We will get back to this in a few steps when we have everything ready.
+
+### Step 2
+
+Add code block to the page. This is the place inside which we will be able to write our code for the logic.
+
+```cshtml
+@code {
+
+}
+```
+
+We have the same block in our animal registration page. There we've defined the logic for animal addition and removal.
+
+### Step 3
+
+Add method `PrintOpenedClosed` to the code block. This will return us a string `opened` or `closed`.
+
+```cshtml
+private string PrintOpenClosed()
+{
+
+}
+```
+
+### Step 4
+
+First add logic checking the day of week.
+
+```cshtml
+private string PrintOpenClosed()
+{
+    switch(DateTime.Today.DayOfWeek)
+    {
+        case(DayOfWeek.Monday):
+        case(DayOfWeek.Tuesday):
+        case(DayOfWeek.Wednesday):
+        case(DayOfWeek.Thursday):
+        case(DayOfWeek.Friday):
+            return "opened";
+        default:
+            return "closed";
+        }
+    }
+```
+
+Here we use type `DateTime` from it we access `Today` and then `DayOfWeek`.
+
+Then we use swithch statement to split the logic. Return `opened` for Monday, Tuesday, Wednesday, Thursday and Friday. In other cases (Saturday and Sunday) return `closed`.
+
+### Step 5
+
+If it's workday we need to check if we are in business hours.
+
+```cshtml
+private string PrintOpenClosed()
+{
+    switch(DateTime.Today.DayOfWeek)
+    {
+        case(DayOfWeek.Monday):
+        case(DayOfWeek.Tuesday):
+        case(DayOfWeek.Wednesday):
+        case(DayOfWeek.Thursday):
+        case(DayOfWeek.Friday):
+            if(DateTime.Now.Hour > 8 && DateTime.Now.Hour < 17)
+            {
+                return "opened";
+            }
+            else
+            {
+                return "closed";
+            }
+        default:
+            return "closed";
+    }
+}
+```
+
+We add if statement to check if we are in business hours. Here `DateTime` type is used. This time we access `Now` because `Today` contains only date without time.
+
+### Step 6
+
+Add call to the `PrintOpenClosed` from the text in our page.
+
+```cshtml
+<p>We are @PrintOpenClosed() right now.</p>
+```
+
+We use `@` to access our method. `@` helps the computer to understand if we are writing code or just text.
+
+### Step 7
+
+Run and test the application. Play around with the code by changing the conditions a little bit to see if you can get both `opened` and `closed` options.
+
+</details>
