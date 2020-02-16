@@ -68,7 +68,7 @@ else
 }
 ```
 
-## Exercise 3.1: create an application that reads an integer number from the console and writes back to the console if it is greater or equal to 5.
+## Exercise 3.1: create an application that reads an integer number from the console and writes to the console if the number is lower or greater or equal to 5.
 
 Your console should look like this if the number is lower than 5:
 ```
@@ -82,8 +82,40 @@ Please enter number:
 6
 The number is greater or equal to 5.
 ```
+<details>
+<summary>Solution</summary>
+<p>
+    
+### Step 1
+Read an integer from the console:
+```csharp
+static void Main(string[] args)
+{
+    Console.WriteLine("Please enter number:");
+    var number = int.Parse(Console.ReadLine());
+}
+```
+### Step 2
+Write `if-else` statement to check if the number is lower or greater or equal to 5:
+```csharp
+static void Main(string[] args)
+{
+    Console.WriteLine("Please enter number:");
+    var number = int.Parse(Console.ReadLine());
+    
+    if (number < 5)
+        Console.WriteLine("The number is lower than 5.");
+    else
+        Console.WriteLine("The number is greater or equal to 5.");
+}
+```
+### Step 3
+Run the application.
 
-## Exercise 3.2: create an application that reads a name and age from the console and writes back if the name and age is the same as yours.
+</p>
+</details>
+
+## Exercise 3.2: create an application that reads a name and an age from the console and writes if the name and age are the same as yours.
 
 If your name is "Jonh", your age is 19 and given values are the same your console should look like this:
 ```
@@ -91,7 +123,7 @@ Please enter your name:
 John
 Please enter your age:
 19
-Wow, you are like me!
+Wow, you are me!
 ```
 and if the given values are different:
 ```
@@ -99,10 +131,131 @@ Please enter your name:
 Tim
 Please enter your age:
 19
-You are completely different than me!
+You are not me!
 ```
 
-## Exercise 3.3: prevent animal removal when there is no animals and animal addition when there are 20 animals
+<details>
+<summary>Solution</summary>
+<p>
+    
+### Step 1
+Define your age and name:
+```csharp
+static void Main(string[] args)
+{
+    var myName = "John";
+    var myAge = 19;
+}
+```
+### Step 2
+Read a name and an age from the console:
+```csharp
+static void Main(string[] args)
+{
+    var myName = "John";
+    var myAge = 19;
+    
+    Console.WriteLine("Please enter your name:");
+    var name = Console.ReadLine();
+    
+    Console.WriteLine("Please enter your age:");
+    var age = int.Parse(Console.ReadLine());
+}
+```
+### Step 3
+Write `if-else` statement using `AND` operator to check if provided name and age are the same as yours:
+```csharp
+static void Main(string[] args)
+{
+    var myName = "John";
+    var myAge = 19;
+    
+    Console.WriteLine("Please enter your name:");
+    var name = Console.ReadLine();
+    
+    Console.WriteLine("Please enter your age:");
+    var age = int.Parse(Console.ReadLine());
+    
+    if (name == myName && age == myAge)
+        Console.WriteLine("Wow, you are me!");
+    else
+        Console.WriteLine("You are not me!");
+}
+```
+### Step 4
+Run the application.
+
+</p>
+</details>
+
+## Exercise 3.3: create an application that reads a country name and an age from the console and writes to the console if it's legal to drink beer in that country at that age. 
+In Lithuania the legal drinking age is 20. In Denmark the legal drinking age is 16. If provided country is not Lithuania or Denmark your application should write that the legal drinking age is unknown. Use `switch` statement.
+
+If provided country is Lithuania and provided age is greater or equal to 20 your console should look like this:
+```
+Please enter a country name:
+Lithuania
+Please enter your age:
+20
+You can legally drink beer.
+```
+
+<details>
+<summary>Solution</summary>
+<p>
+    
+### Step 1
+Read a country name and an age from the console:
+```csharp
+static void Main(string[] args)
+{
+    Console.WriteLine("Please enter a country name:");
+    var country = Console.ReadLine();
+    
+    Console.WriteLine("Please enter your age:");
+    var age = int.Parse(Console.ReadLine());
+}
+```
+### Step 2
+Write a `switch` statement and combine it with `if-else` to check the legal drinking age:
+```csharp
+static void Main(string[] args)
+{
+    Console.WriteLine("Please enter a country name:");
+    var country = Console.ReadLine();
+    
+    Console.WriteLine("Please enter your age:");
+    var age = int.Parse(Console.ReadLine());
+    
+    switch (country)
+    {
+        case "Lithuania":
+            if (age >= 20)
+                Console.WriteLine("You can legally drink beer.");
+            else
+                Console.WriteLine("You can't legally drink beer.");
+            break;
+
+        case "Denmark":
+            if (age >= 16)
+                Console.WriteLine("You can legally drink beer.");
+            else
+                Console.WriteLine("You can't legally drink beer.");
+            break;
+
+        default:
+            Console.WriteLine("The legal drinking age is unknown.");
+            break;
+    }
+}
+```
+### Step 3
+Run the application.
+
+</p>
+</details>
+
+## Exercise 3.4: prevent animal removal when there is no animals and animal addition when there are 20 animals
 
 <details>
 <summary>Solution</summary>
@@ -160,7 +313,7 @@ Run the application and test if it works as expected. Check if animal count will
 
 </details>
 
-## Exercise 3.4: display `no animals` when there is no animals and `20 (full capacity)` when we reach 20 animals in the shelter
+## Exercise 3.5: display `no animals` when there is no animals and `20 (full capacity)` when we reach 20 animals in the shelter
 
 If there are no animals your page should look like this
 
@@ -255,5 +408,4 @@ Here we just return animalCount in string representation.
 ### Step 5
 
 Run the application and test if it works as expected. Check if text displayed on the screen is correct in all cases.
-
 </details>
