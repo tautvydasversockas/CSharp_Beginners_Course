@@ -6,10 +6,10 @@
 
 <p>We are open every workday from 8:00 - 17:00</p>
 
-<p>We are @PrintOpenClosed() right now.</p>
+<p>We are @GetOpenClosedText() right now.</p>
 
 @code {
-    private string PrintOpenClosed()
+    private string GetOpenClosedText()
     {
         switch(DateTime.Today.DayOfWeek)
         {
@@ -20,7 +20,7 @@
             case(DayOfWeek.Friday):
                 if(DateTime.Now.Hour > 8 && DateTime.Now.Hour < 17)
                 {
-                    return "opened";
+                    return "open";
                 }
                 else
                 {

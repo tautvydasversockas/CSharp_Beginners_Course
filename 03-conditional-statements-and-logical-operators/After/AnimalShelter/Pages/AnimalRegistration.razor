@@ -2,7 +2,7 @@
 
 <h1>Animal registration</h1>
 
-<p>At @DateTime.Today.ToShortDateString() we have @PrintAnimalCount() animals.</p>
+<p>At @DateTime.Today.ToShortDateString() we have @GetAnimalCountText() animals.</p>
 
 <button class="btn btn-primary" @onclick="AddAnimal">Add animal</button>
 <button class="btn btn-primary" @onclick="RemoveAnimal">Remove animal</button>
@@ -11,7 +11,7 @@
     private const int AnimalCapacity = 20;
     private int animalCount = 0;
 
-    private string PrintAnimalCount()
+    private string GetAnimalCountText()
     {
         if (animalCount == 0)
         {
