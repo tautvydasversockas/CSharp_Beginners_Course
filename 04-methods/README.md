@@ -26,3 +26,15 @@ Method `Multiply` returns an `int` type number which is calculated by multiplyin
 var multiplied = Multiply(5, 2);
 ```
 See? We are getting good at this!
+
+## Exercise 4.1: write a method that takes a name as a parameter and writes a personalized greeting message to the console.
+
+If your name is "mr. Bond" after calling the method your console should look like this:
+```
+Good evening mr. Bond, I've been expecting you.
+```
+## Exercise 4.2: write a method that that takes 3 numbers as parameters and checks if the sum of the first two numbers is equal to the third number.
+
+## Exercise 4.3: write a method that returns the n-th letter of a given word.
+
+If the word is "pneumonoultramicroscopicsilicovolcanoconiosis" and n is 29 the returned letter should be "o"... or perhaps "v"... I don't know... the word is too long...
