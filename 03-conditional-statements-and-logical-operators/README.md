@@ -254,3 +254,275 @@ Run the application.
 
 </p>
 </details>
+
+## Exercise 3.4: prevent animal removal when there are no animals and animal addition when there are 20 animals already added.
+
+<details>
+<summary>Solution</summary>
+
+### Step 1
+
+Add a constant variable to hold animal capacity:
+
+```csharp
+@code {
+    private const int AnimalCapacity = 20;
+
+    ......
+}
+```
+
+We will use this variable for validating our animal count.
+Constant variables (with `const` keyword) are variables that don't change.
+
+### Step 2
+
+Add `if` statement to `AddAnimal` method:
+
+```csharp
+private void AddAnimal()
+{
+    if (animalCount < AnimalCapacity)
+    {
+        animalCount++;
+    }
+}
+```
+
+### Step 3
+
+Add `if` statement to `RemoveAnimal` method:
+
+```csharp
+private void RemoveAnimal()
+{
+    if (animalCount > 0)
+    {
+        animalCount--;
+    }
+}
+```
+
+### Step 4
+
+Run the application.
+
+</details>
+
+## Exercise 3.5: display "no animals" when there are no animals and "20 (full capacity)" when we reach 20 animals in the shelter.
+
+If there are no animals your page should look like this:
+
+```
+At 2020-02-09 we have no animals
+```
+
+If there are 20 animals your page should look like this:
+
+```
+At 2020-02-09 we have 20 (full capacity) animals
+```
+
+Otherwise it should stay the same as it was before:
+
+```
+At 2020-02-09 we have 5 animals`
+```
+
+<details>
+<summary>Solution</summary>
+
+### Step 1
+Define a method that would return string representation of animal count:
+
+```csharp
+private string GetAnimalCountText()
+{
+    
+}
+```
+
+Call this method:
+
+```cshtml
+<p>At @DateTime.Today.ToShortDateString() we have @GetAnimalCountText() animals.</p>
+```
+
+### Step 2
+Add `if` statement to the method and handle the case when there are no animals:
+
+```csharp
+private string GetAnimalCountText()
+{
+    if (animalCount == 0)
+    {
+        return "no";
+    }
+}
+```
+
+### Step 3
+
+Add `else if` part to handle the full capacity case:
+
+```csharp
+private string GetAnimalCountText()
+{
+    if (animalCount == 0)
+    {
+        return "no";
+    }
+    else if (animalCount == AnimalCapacity)
+    {
+        return animalCount + " (full capacity)";
+    }
+}
+```
+
+### Step 4
+
+Add `else` part to handle other cases.
+
+```csharp
+private string GetAnimalCountText()
+{
+    if (animalCount == 0)
+    {
+        return "no";
+    }
+    else if (animalCount == AnimalCapacity)
+    {
+        return animalCount + " (full capacity)";
+    }
+    else
+    {
+        return animalCount.ToString();
+    }
+}
+```
+
+### Step 5
+
+Run the application.
+</details>
+
+## Exercise 3.6: add business hours to your home page and display "We are open" if we are open now and "We are closed" otherwise.
+
+Your page should look like this:
+
+```
+We are open every workday from 8:00 - 17:00
+
+We are closed.
+```
+
+<details>
+<summary>Solution</summary>
+
+### Step 1
+
+Add the following text to the `Index.razor` file:
+
+```cshtml
+<p>We are open every workday from 8:00 - 17:00</p>
+
+<p>We are .</p>
+```
+
+Text that we put between `<p>` and `</p>` will be shown in a separate paragraph.
+
+Note that we left space empty where `open` or `closed` should be displayed. We will get back to this in a few steps when we have everything ready.
+
+### Step 2
+
+Add a code block to the page. This is where we will write our logic.
+
+```cshtml
+@code {
+
+}
+```
+
+We have the same block in our animal registration page. There we've defined the logic for animal addition and removal.
+
+### Step 3
+
+Add a method `GetOpenClosedText` to the code block. This will return us a string "open" or "closed".
+
+```cshtml
+private string GetOpenClosedText()
+{
+
+}
+```
+
+### Step 4
+
+Add logic checking working days:
+
+```cshtml
+private string GetOpenClosedText()
+{
+    switch(DateTime.Today.DayOfWeek)
+    {
+        case(DayOfWeek.Monday):
+        case(DayOfWeek.Tuesday):
+        case(DayOfWeek.Wednesday):
+        case(DayOfWeek.Thursday):
+        case(DayOfWeek.Friday):
+            return "open";
+        default:
+            return "closed";
+        }
+    }
+```
+
+Here we use type `DateTime` from it we access `Today` and then `DayOfWeek`.
+
+Then we use switch statement to split the logic. Return "open" for Monday, Tuesday, Wednesday, Thursday and Friday. In other cases (Saturday and Sunday) return "closed".
+
+### Step 5
+
+Add logic checking business hours:
+
+```cshtml
+private string GetOpenClosedText()
+{
+    switch(DateTime.Today.DayOfWeek)
+    {
+        case(DayOfWeek.Monday):
+        case(DayOfWeek.Tuesday):
+        case(DayOfWeek.Wednesday):
+        case(DayOfWeek.Thursday):
+        case(DayOfWeek.Friday):
+            if(DateTime.Now.Hour > 8 && DateTime.Now.Hour < 17)
+            {
+                return "open";
+            }
+            else
+            {
+                return "closed";
+            }
+        default:
+            return "closed";
+    }
+}
+```
+
+We add if statement to check if we are in business hours. Here `DateTime` type is used. This time we access `Now` because `Today` contains only date without time.
+
+Notice that we did not use `break`. If we return and do nothing else then `break` is not needed.
+
+### Step 6
+
+Add a method call to the `GetOpenClosedText` from the text in our page.
+
+```cshtml
+<p>We are @GetOpenClosedText() right now.</p>
+```
+
+### Step 7
+
+Run the application. Play around with the code by changing the business hours to see if you can get both `open` and `closed` options.
+
+</details>
