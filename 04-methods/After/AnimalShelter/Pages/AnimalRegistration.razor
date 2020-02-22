@@ -1,5 +1,8 @@
 ﻿@page "/animalregistration"
 
+@using AnimalShelter.Data
+@inject ShelterCalendarService CalendarService 
+
 <h1>Animal registration</h1>
 
 <p>At @DateTime.Today.ToShortDateString() we have @GetAnimalCountText() animals.</p>
@@ -29,17 +32,13 @@
 
     private void AddAnimal()
     {
-        if (animalCount < AnimalCapacity)
-        {
+        if (CalendarService.IsShelterOpen() && animalCount < AnimalCapacity)
             animalCount++;
-        }
     }
 
     private void RemoveAnimal()
     {
-        if (animalCount > 0)
-        {
+        if (CalendarService.IsShelterOpen() && animalCount > 0)
             animalCount--;
-        }
     }
 }
