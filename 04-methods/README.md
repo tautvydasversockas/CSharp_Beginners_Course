@@ -39,7 +39,7 @@ Good evening Mr Bond, I've been expecting you.
 <p>
     
 ### Step 1
-Define a method:
+Define a method that returns nothing:
 ```csharp
 public void WriteGreetingToConsole(string name)
 {
@@ -79,7 +79,7 @@ class Program
 <p>
     
 ### Step 1
-Define a method:
+Define a method that returns type `bool`:
 ```csharp
 public bool CheckSumOfTwoNumbers(int num1, int num2, int sum)
 {
@@ -107,7 +107,7 @@ If the word is "pneumonoultramicroscopicsilicovolcanoconiosis" and n is 29 the r
 <p>
     
 ### Step 1
-Define a method:
+Define a method that returns type `char`:
 ```csharp
 public char GetLetter(string word, int n)
 {
