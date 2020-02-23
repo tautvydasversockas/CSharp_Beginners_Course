@@ -41,9 +41,9 @@ If the word is "pneumonoultramicroscopicsilicovolcanoconiosis" and n is 29 the r
 
 ## Exercise 4.4: prevent animal additional/removal if we are closed.
 
-We already did open/closed check on our home page. Now we need the same check in the second place on animal registration page. We don't want to copy and paste the same code in different places so we want to create a method that could be used in both places.
+We already did an open/closed check on our home page. Now we need the same check in the second place on the animal registration page. We don't want to copy and paste the same code in different places so we want to create a method that could be used in both places.
 
-We need to create a class in `Data` folder (don't worry if you don't know what the class is, we will cover it in later). This class will hold our method. Just create file `ShelterCalendarService.cs` in `Data` folder and paste this code there:
+We need to create a class in the `Data` folder (don't worry if you don't know what the class is, we will cover it in later). This class will hold our method. Just create file `ShelterCalendarService.cs` in `Data` folder and paste this code there:
 
 ```csharp
 using System;
@@ -57,7 +57,7 @@ namespace AnimalShelter.Data
 }
 ```
 
-This class will hold our method. To use this both in home and animal registration pages we need to add this code in page files right after the first line:
+This class will hold our method. To use this both in the home and animal registration pages we need to add this code in page files right after the first line:
 
 ```cshtml
 @using AnimalShelter.Data
@@ -72,14 +72,14 @@ services.AddSingleton<ShelterCalendarService>();
 
 Now you can access your `ShelterCalendarService` methods through `CalendarService`. Here `ShelterCalendarService` is a type while `CalendarService` is an instance of the type.
 
-Everything is ready to perform the task. Create a method that would tell us if we are open. If we are open it has to return `true` and if we are closed it has to return `false`. Then use this method in home page to print open/closed text and animal registration page to prevent animal addition/removal in case we are closed.
+Everything is ready to perform the task. Create a method that would tell us if we are open. If we are open it has to return `true` and if we are closed it has to return `false`. Then use this method on the home page to print open/closed text and animal registration page to prevent animal addition/removal in case we are closed.
 
 <details>
 <summary>Solution</summary>
 
 ### Step 1
 
-Create `public` method that returns value of type `bool` in the class we created earlier. You have already created logic for it in the last lesson:
+Create a `public` method that returns a value of type `bool` in the class we created earlier. You have already created the logic for it in the last lesson:
 
 ```csharp
 public bool IsShelterOpen()
@@ -103,7 +103,7 @@ public bool IsShelterOpen()
 
 ### Step 2
 
-Rewrite `GetOpenClosedText` method in the home page to use the new method of `ShelterCalendarService`:
+Rewrite `GetOpenClosedText` method on the home page to use the new method of `ShelterCalendarService`:
 
 ```csharp
 private string GetOpenClosedText()
@@ -115,7 +115,7 @@ private string GetOpenClosedText()
 }
 ```
 
-The code in home page became very simple. We hid all the logic of checking if we are open in the `IsShelterOpen` method. Now `GetOpenClosedText` method only focuses on returning a text indicating if the shelter is closed or open. The code became easier to read and understand.
+The code in the home page became very simple. We hid all the logic of checking if we are open in the `IsShelterOpen` method. Now `GetOpenClosedText` method only focuses on returning a text indicating if the shelter is closed or open. The code became easier to read and understand.
 
 ### Step 3
 
