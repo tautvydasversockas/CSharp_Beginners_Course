@@ -1,8 +1,8 @@
 # 2. Data types and variables
 
-Variables are nothing more than containers for storing data values. Variables in C# have types describing what kind of data is being stored. In fact, you can create your own variable types but we will get to that later. These are some of the variable types defined in C#:
+Variables are nothing more than containers for storing data values. Variables in C# have types describing what kind of data is being stored. You can create your variable types but we will get to that later. These are some of the variable types defined in C#:
 * `int` - stores integers (whole numbers) i.e.:  1, 2, 3...
-* `double` - stores floating point numbers with decimals i.e.:  1.5, 2.317, -17.923...
+* `double` - stores floating-point numbers with decimals i.e.:  1.5, 2.317, -17.923...
 * `char` - stores single character i.e.: 'a', 'b', 'C', 'Z'...
 * `string` - stores text i.e.: "It's a me, Mario!", "Hello, World!"... 
 * `bool` - stores value that can be one of two states i.e.: true, false.
@@ -27,7 +27,7 @@ Notice the `=` symbol - as you might have already guessed that is how you assign
 
 All variables in the same scope (for now imagine it as everything between `{}` brackets) must have unique names.
 
-In this chapter you will use variables in a more complicated fashion as well as explore some of the operations that you can do with them.
+In this chapter, you will use variables in a more complicated fashion as well as explore some of the operations that you can do with them.
 
 ## Exercise 2.1: create an application that writes your name and age to the console. Both your name and age should be stored in variables. 
 
@@ -40,7 +40,7 @@ John: 19
 <p>
     
 ### Step 1
-Store your name and age into a separate variables:
+Store your name and age into separate variables:
 ```csharp
 static void Main(string[] args)
 {
@@ -137,7 +137,7 @@ Run the application.
 </p>
 </details>
 
-## Exercise 2.3: create an application that reads a word from the console and writes back the 2nd letter back to the console. For now provide words only longer than 2 letters.
+## Exercise 2.3: create an application that reads a word from the console and writes back the 2nd letter back to the console. For now, provide words only longer than 2 letters.
 
 Your console should look like this:
 ```
@@ -184,7 +184,7 @@ Run the application.
 
 ## Exercise 2.4: create an empty Blazor web application for animal shelter project.
 
-During the course you will be building an animal shelter web application.
+During the course, you will be building an animal shelter web application.
 
 <details>
 <summary>Solution</summary>
@@ -195,7 +195,7 @@ Open the terminal and browse to your workspace directory by executing the follow
 ```
 $ mkdir C:/AnimalShelter; cd C:/AnimalShelter
 ```
-`mkdir` is used to create a folder `C:/AnimalShelter` while `cd` is used to browse to the folder `C:/AnimalShelter`. If for some reason you want to create a folder in a differnet directory or you don't have a C disk - change`C:/AnimalShelter` part to your desired directory path.
+`mkdir` is used to create a folder `C:/AnimalShelter` while `cd` is used to browse to the folder `C:/AnimalShelter`. If for some reason you want to create a folder in a different directory or you don't have a C disk - change`C:/AnimalShelter` part to your desired directory path.
 ### Step 2
 Type the following command to create a default Blazor web application:
 ```
@@ -208,7 +208,7 @@ $ code .
 ```
 If this doesn't work - open your application folder manually by using `File -> Open Folder` in Visual Studio Code.
 ### Step 4
-In order to run the application select debug tab of Visual Studio Code and click `Start Debugging` or click `F5` or write `dotnet run` in a Terminal window. You should see the application opened in your web browser. If this doesn't happen - browse to https://localhost:5001. If you see some error messages about safety and certificates try using http://localhost:5000 instead. Feel free to explore it by clicking different tabs, buttons. Congratulations - you have just created your first web application.
+To run the application select debug tab of Visual Studio Code and click `Start Debugging` or click `F5` or write `dotnet run` in a Terminal window. You should see the application opened in your web browser. If this doesn't happen - browse to https://localhost:5001. If you see some error messages about safety and certificates try using http://localhost:5000 instead. Feel free to explore it by clicking different tabs, buttons. Congratulations - you have just created your first web application.
 
 </p>
 </details>
@@ -238,13 +238,13 @@ Here you can adopt your future pet.
 
 ## Exercise 2.6: make animal registration page
 
-Use `Counter` page as a base for the task.
+Use the `Counter` page as a base for the task.
 
 Rename menu item `Counter` to `Animal Registration`.
 
 Rename `Click me` to `Add animal`, add button `Remove animal` and implement the logic behind it. `Remove Animal` should decrement our animal count. 
 
-Please make sure that methods (code blocks that contain series of statements), variables and files themselves are named properly and their names represent their purpose.
+Please make sure that methods (code blocks that contain a series of statements), variables and files themselves are named properly and their names represent their purpose.
 
 Instead of `Current count:` display `Currently we have *animal number goes here* animals`
 
@@ -264,7 +264,7 @@ Change text `Counter` to `Animal Registration` in `NavMenu.razor` file under `Sh
 
 ### Step 2
 Rename file `Counter.razor` to `AnimalRegistration.razor`.
-Change first line of the file to `@page "/animalregistration"`.
+Change the first line of the file to `@page "/animalregistration"`.
 Change menu item in `NavMenu.razor` to point to the new page name which is `animalregistration`.
 ```html
 <NavLink class="nav-link" href="animalregistration">
@@ -314,7 +314,7 @@ private void RemoveAnimal()
     animalCount--;
 }
 ```
-Don't worry if you still don't understand what method is. We're going to come back to it later.
+Don't worry if you still don't understand what a method is. We're going to come back to it later.
 In `RemoveAnimal` method we decrement variable `animalCount`.
 
 ### Step 5
@@ -333,7 +333,7 @@ Run the application.
 </p>
 </details>
 
-## Exercise 2.7: show current date in animal registration page.
+## Exercise 2.7: show the current date in the animal registration page.
 
 Instead of:
 ```
@@ -353,6 +353,6 @@ You can use `DateTime` type like this:
 <p>At @DateTime.Today.ToShortDateString() we have @animalCount animals.</p>
 ```
 
-We can access current date by calling `Today` from type `DateTime`. When Today gets converted (automatically) from type `DateTime` to type `String` it displays time as zeros - instead of "2020-02-04" we get "2020-02-04 00:00:00". To fix this we use `ToShortDateString` method which returns date as a type `String` without time part.
+We can access the current date by calling `Today` from type `DateTime`. When Today gets converted (automatically) from type `DateTime` to type `String` it displays time as zeros - instead of "2020-02-04" we get "2020-02-04 00:00:00". To fix this we use `ToShortDateString` method which returns the date as a type `String` without time part.
 
 </details>

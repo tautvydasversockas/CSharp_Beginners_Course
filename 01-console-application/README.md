@@ -1,8 +1,8 @@
 # 1. Console Application
 
-A console application is a computer program that is designed to be used via text-only computer interface such as text terminal, the command line interface of some operating systems (Unix, DOS, etc.) or the text-based interface, such as Win32 console in Microsoft Windows, Terminal in macOS and xterm in Unix. 
+A console application is a computer program that is designed to be used via text-only computer interfaces such as text terminal, the command line interface of some operating systems (Unix, DOS, etc.) or the text-based interface, such as Win32 console in Microsoft Windows, Terminal in macOS and xterm in Unix. 
 
-In this chapter you will explore a console application written in C#. 
+In this chapter, you will explore a console application written in C#. 
 
 ## Exercise 1.1: create a new "Hello World" console application
 
@@ -31,7 +31,7 @@ Run the application. You should see *"Hello World and Good Bye!"* in a terminal 
 ```csharp 
 using System;
 ```
-`using` directive allows the use of types in a namespace (we will get to that later) so that you do not have to qualify the use of a type in that namespace. In this application we need to use `System` namespace since the `Console` part is from `System` namespace. 
+`using` directive allows the use of types in a namespace (we will get to that later) so that you do not have to qualify the use of a type in that namespace. In this application, we need to use `System` namespace since the `Console` part is from `System` namespace. 
 
 Try to remove `using System` line. You will see your compiler "complaining" - word Console marked in red. 
 
@@ -63,7 +63,7 @@ namespace MyApp
     }
 }
 ```
-Run the application. You should see *"Hello World and Good Bye!"* in a terminal window. However it is usually more convenient to keep the `using` lines since by having them you are able to use everything from that namespace (in this example it is `System`) without the need of prefixing everything with the name of it.
+Run the application. You should see *"Hello World and Good Bye!"* in a terminal window. However, it is usually more convenient to keep the `using` lines since by having them you can use everything from that namespace (in this example it is `System`) without the need of prefixing everything with the name of it.
 
 ### Step 2
 ```csharp 
@@ -71,7 +71,7 @@ namespace MyApp
 {
 }
 ```
-Namespaces in C# are used in order to organize the source code (like folders in windows in some sense).
+Namespaces in C# are used to organize the source code (like folders in windows in some sense).
 ```csharp
 System.Console.WriteLine("Hello World and Good Bye!");
 ```
@@ -189,10 +189,10 @@ Run the application. You should see *"It's a me, Mario!"* in a terminal window.
 
 ## Exercise 1.2: print your input to the console
 
-During this exercise you will print your console input line back to the same console.
+During this exercise, you will print your console input line back to the same console.
 
 ### Step 1
-Store your console input into variable. For now imagine variables as a way of storing information in your computer memory:
+Store your console input into a variable. For now, imagine variables as a way of storing information in your computer memory:
 ```csharp
 static void Main(string[] args)
 {
