@@ -1,0 +1,22 @@
+﻿@page "/"
+
+@using AnimalShelter.Data
+@inject ShelterCalendarService CalendarService 
+
+<h1>Welcome to our animal shelter page!</h1>
+
+<p>Here you can adopt your future pet.</p>
+
+<p>We are open every workday from 8:00 - 17:00</p>
+
+<p>We are @GetOpenClosedText() right now.</p>
+
+@code {
+    private string GetOpenClosedText()
+    {
+        if (CalendarService.IsShelterOpen())
+            return "open";
+        else
+            return "closed";
+    }
+}
