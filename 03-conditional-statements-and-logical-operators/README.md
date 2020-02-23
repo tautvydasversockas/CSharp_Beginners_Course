@@ -31,7 +31,7 @@ else
 ```
 If the statement passed to `if` is `true` (in this case if given name is equal to my name) then the first block of code is going to be executed (we would see "It is my name!" in the console), otherwise execution starts with `else` block (we would see "It is not my name!" in the console).
 
-Now imagine if we had to compare a lot of names and depending on the name do different things. C# has us covered with `switch` statement which is nothing more than fancy alternative to `if-else`:
+Now imagine if we had to compare a lot of names and depending on the name do different things. C# has us covered with `switch` statement which is nothing more than a fancy alternative to `if-else`:
 ```csharp
 var givenName = Console.ReadLine();
 
@@ -76,7 +76,7 @@ Please enter number:
 4
 The number is lower than 5.
 ```
-and like this if the number is greater or equal to 5:
+and like this, if the number is greater or equal to 5:
 ```
 Please enter number:
 6
@@ -189,7 +189,7 @@ Run the application.
 </details>
 
 ## Exercise 3.3: create an application that reads a country name and an age from the console and writes to the console if it's legal to drink beer in that country at that age. 
-In Lithuania the legal drinking age is 20. In Denmark the legal drinking age is 16. If provided country is not Lithuania or Denmark your application should write that the legal drinking age is unknown. Use `switch` statement.
+In Lithuania, the legal drinking age is 20. In Denmark, the legal drinking age is 16. If provided country is not Lithuania or Denmark your application should write that the legal drinking age is unknown. Use `switch` statement.
 
 If provided country is Lithuania and provided age is greater or equal to 20 your console should look like this:
 ```
@@ -323,7 +323,7 @@ If there are 20 animals your page should look like this:
 At 2020-02-09 we have 20 (full capacity) animals
 ```
 
-Otherwise it should stay the same as it was before:
+Otherwise, it should stay the same as it was before:
 
 ```
 At 2020-02-09 we have 5 animals`
@@ -509,13 +509,13 @@ private string GetOpenClosedText()
 }
 ```
 
-We add if statement to check if we are in business hours. Here `DateTime` type is used. This time we access `Now` because `Today` contains only date without time.
+We add if statement to check if we are in business hours. Here `DateTime` type is used. This time we access `Now` because `Today` contains date without time.
 
 Notice that we did not use `break`. If we return and do nothing else then `break` is not needed.
 
 ### Step 6
 
-Add a method call to the `GetOpenClosedText` from the text in our page.
+Add a method call to the `GetOpenClosedText` from the text on our page.
 
 ```cshtml
 <p>We are @GetOpenClosedText() right now.</p>
