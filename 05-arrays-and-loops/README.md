@@ -21,3 +21,56 @@ For a minute imagine if you did not find my joke about batman funny... How could
 var fruits = new []{"Mango", "Apple", "Banana...nana...nana...BATMAN!", "Orange"};
 fruits[2] = "Banana";
 ```
+Now imagine you have to write first 5 array values to the console. You could do it like this:
+```csharp
+Console.WriteLine(array[0]);
+Console.WriteLine(array[1]);
+Console.WriteLine(array[2]);
+Console.WriteLine(array[3]);
+Console.WriteLine(array[4]);
+```
+That wasn't that hard, was it? But what if you had to write 100 values? 1000? 10000? To write all of those lines would take quite some time. Fortunately, we can do better by utilising the `while` loop:
+```csharp
+var i = 0;
+while (i < 100)
+{
+    Console.WriteLine(array[i]);
+    i++;
+}
+```
+The `while` loop consists of 2 parts - a condition and a code block. The loop loops through the code block as long as a specified condition is equal to `true`. In the example, the code in the loop will run, over and over again, as long as the variable `i` is less than 100. During each loop, we are increasing the value of `i` by 1 (if you forgot, `i++` is the same as `i = i + 1`) making the loop stop after 100 loops. 
+
+However, since you know the number of times you want to loop through a block of code, you could use the `for` loop instead:
+```csharp
+for (var i = 0; i < 100; i++)
+{
+    Console.WriteLine(array[i]);
+}
+```
+This `for` loop consists of 3 statements and a code block. The first statement `i = 0` is executed one time before the execution of the code block. In this case, we create a variable named `i` and assign a value of 0 to it. The second statement `i < 100` defines the condition for executing the code block (same as with the `while` loop). The last statement `i++` is executed every time after the code block has been executed. As you can probably guess, the `foor` loop is the same `while` loop with some syntax improvements.
+
+To make matters more interesting, there's one more loop called `foreach` which you could use to loop through all of the array values: 
+```csharp
+foreach (var value in array)
+{
+    Console.WriteLine(value);
+}
+```
+Despite the syntax differences, the `foreach` loop is nothing more than the good old `foor` loop:
+```csharp
+for (var i = 0; i < array.Length; i++)
+{
+    Console.WriteLine(array[i]);
+}
+```
+Since we already discovered, that the `for` loop is nothing more than the good old `while` loop, you could argue that if you understand the `while` loop, you understand them all.
+
+
+If you were reading thoroughly, you know that you need to provide an array size to initialize the array. But what would you do if you didn't know the size right now since you were planning to add some values to the array later? You could create an extremely huge array with a size of 10000. However, if you had more values than 10000, you would still be facing the same issue. Lucky for us, there is a data structure called `List` which utilises arrays to grow it's size dynamically:
+```csharp
+var myList = new List<int>();
+for (var i = 0; i < 10000; i++)
+{
+    myList.Add(i);
+}
+```
