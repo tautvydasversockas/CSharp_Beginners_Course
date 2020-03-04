@@ -74,3 +74,146 @@ for (var i = 0; i < 10000; i++)
     myList.Add(i);
 }
 ```
+
+## Exercise 5.1: write a method that takes an array of words and writes all of them to the console.
+
+<details>
+<summary>Solution</summary>
+<p>
+    
+### Step 1
+Define a method that returns nothing:
+```csharp
+public void WriteToConsole(string[] array)
+{
+}
+```
+### Step 2
+Implement the defined method:
+```csharp
+public void WriteToConsole(string[] array)
+{
+    foreach (var item in array)
+        Console.WriteLine(item);
+}
+```
+### Step 3
+Call the method to test it. 
+</p>
+</details>
+
+## Exercise 5.2: write a method that returns the sum of first n natural numbers.
+
+If n is 11, the sum should be 66.
+<details>
+<summary>Solution</summary>
+<p>
+    
+### Step 1
+Define a method that returns nothing:
+```csharp
+public int GetNNumbersSum(int n)
+{
+}
+```
+### Step 2
+Implement the defined method:
+```csharp
+public int GetNNumbersSum(int n)
+{
+    var sum = 0;
+
+    for (var i = 1; i <= n; i++)
+        sum += i;
+
+    return sum;
+}
+```
+`sum += i` is another way of writing `sum = sum + i`.
+### Step 3
+Call the method to test it. 
+</p>
+</details>
+
+## Exercise 5.3: write a console application that asks for a secret word. If the given word is "cattywampus" the application writes congratulating message to the console and closes, otherwise the application says that the word is incorrect and lets to try again.
+
+Your console should look something like this:
+```
+What's the secret word?
+bumfuzzle
+No no no, that is not the secret word!
+What's the secret word?
+cattywampus
+Congratulations, it's correct!
+```
+<details>
+<summary>Solution</summary>
+<p>
+    
+### Step 1
+Implement the logic using the while loop:
+```csharp
+static void Main()
+{
+    while (Console.ReadLine().ToLower() != "cattywampus")
+        Console.WriteLine("No no no, that is not the secret word!");
+
+    Console.WriteLine("Congratulations, it's correct!");
+}
+```
+### Step 2
+Run the application. 
+</p>
+</details>
+
+## Exercise 5.4: write a console application that reads all user input lines. When the user writes "stop", the application writes all of the inputs to the console.
+
+Your console should look something like this:
+```
+Gardyloo
+Taradiddle
+Collywobbles
+Flibbertigibbet
+stop
+Gardyloo
+Taradiddle
+Collywobbles
+Flibbertigibbet
+```
+Fun fact - those crazy words are real.
+
+<details>
+<summary>Solution</summary>
+<p>
+    
+### Step 1
+Read user words and store them into a list:
+```csharp
+static void Main()
+{
+    var words = new List<string>();
+
+    string givenWord;
+    while ((givenWord = Console.ReadLine()).ToLower() != "stop")
+        words.Add(givenWord);
+}
+```
+### Step 2
+Write words from the list back to the console:
+```csharp
+static void Main()
+{
+    var words = new List<string>();
+
+    string givenWord;
+    while ((givenWord = Console.ReadLine()).ToLower() != "stop")
+        words.Add(givenWord);
+
+    foreach (var item in words)
+        Console.WriteLine(item);
+}
+```
+### Step 3
+Run the application. 
+</p>
+</details>
