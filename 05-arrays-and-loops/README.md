@@ -218,7 +218,7 @@ Run the application.
 </p>
 </details>
 
-## Exercise 5.5: update animal registration page for it to read animal name before adding it to list. Prevent duplicate animal names addition to the animals list. Rewrite GetAnimalCountText method to work with the new logic.
+## Exercise 5.5: update animal registration page for it to read animal name before adding it to the list. Prevent duplicate animal names addition to the animals list. Rewrite GetAnimalCountText method to work with the new logic.
 
 As we did last time with `ShelterCalendarService` now we need something that would be responsible for storing our animals. Let's create `ShelterAnimalService` which will be responsible for everything we do with our animals. Create `ShelterAnimalService.cs` file in Data folder:
 
@@ -276,7 +276,7 @@ namespace AnimalShelter.Data
 }
 ```
 
-We also need to expose our collection to the world but prevent others outside our class from editing it. Don't worry if you don't understand what is going on here. What you have to remember that you will be able to use `Animals` to access our collection outside this class.
+We also need to expose our collection to the world but prevent others outside our class from editing it. Don't worry if you don't understand what is going on here. What you have to remember is that you will be able to use `Animals` to access our collection outside this class.
 
 ```csharp
 using System;
@@ -402,7 +402,7 @@ Run the application
 
 </details>
 
-## Exercise 5.6: rewrite FetchData page to display list on our animals in the table. Make use of ShelterAnimalService there.
+## Exercise 5.6: rewrite FetchData page to display list of our animals in the table. Make use of ShelterAnimalService there.
 
 <details>
 <summary>Solution</summary>
