@@ -218,7 +218,7 @@ Run the application.
 </p>
 </details>
 
-## Exercise 5.5: update animal registration page for it to read animal name before adding it to the list. Prevent duplicate animal names addition to the animals list. Rewrite GetAnimalCountText method to work with the new logic.
+## Exercise 5.5: update animal registration page to read animal names before adding them to the list. Prevent duplicate animal names. Rewrite GetAnimalCountText method to work with the new logic.
 
 As we did last time with `ShelterCalendarService` now we need something that would be responsible for storing our animals. Let's create `ShelterAnimalService` which will be responsible for everything we do with our animals. Create `ShelterAnimalService.cs` file in Data folder:
 
@@ -231,8 +231,6 @@ namespace AnimalShelter.Data
     public class ShelterAnimalService
     {
         private List<string> _animals = new List<string>();
-
-        
     }
 }
 ```
