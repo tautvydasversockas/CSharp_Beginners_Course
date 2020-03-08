@@ -1,0 +1,42 @@
+﻿@page "/animalregistration"
+
+@using AnimalShelter.Data
+@inject ShelterCalendarService CalendarService
+@inject ShelterAnimalService AnimalService 
+
+<h1>Animal registration</h1>
+
+<p>At @DateTime.Today.ToShortDateString() we have @GetAnimalCountText() animals.</p>
+
+<h2>Animal Information</h2>
+
+Name: <input type="text" @bind="_animalName"/><br/><br/>
+
+<button class="btn btn-primary" @onclick="AddAnimal">Add animal</button>
+
+@code {
+    private string _animalName;
+
+    private string GetAnimalCountText()
+    {
+        var animalCount = AnimalService.Animals.Count();
+
+        if (animalCount == 0)
+        {
+            return "no";
+        }
+        else if (animalCount == AnimalService.AnimalCapacity)
+        {
+            return animalCount + " (full capacity)";
+        }
+        else
+        {
+            return animalCount.ToString();
+        }
+    }
+
+    private void AddAnimal()
+    {
+        AnimalService.AddAnimal(_animalName);
+    }
+}
