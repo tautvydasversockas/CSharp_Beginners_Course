@@ -217,3 +217,267 @@ static void Main()
 Run the application. 
 </p>
 </details>
+
+## Exercise 5.5: update animal registration page for it to read animal name before adding it to list. Prevent duplicate animal names addition to the animals list. Rewrite GetAnimalCountText method to work with the new logic.
+
+As we did last time with `ShelterCalendarService` now we need something that would be responsible for storing our animals. Let's create `ShelterAnimalService` which will be responsible for everything we do with our animals. Create `ShelterAnimalService.cs` file in Data folder:
+
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace AnimalShelter.Data
+{
+    public class ShelterAnimalService
+    {
+        private List<string> _animals = new List<string>();
+
+        
+    }
+}
+```
+
+Animals list will be holding animals of the shelter. It's private because we don't want anyone to mess with the list. `ShelterAnimalService` is responsible for it and everyone will have to play by its rules.
+
+Just like the last time with `ShelterCalendarService` we need to register our new service in `Startup.cs` file in `ConfigureServices` method:
+
+```csharp
+services.AddSingleton<ShelterAnimalService>();
+```
+
+Also, inject it in every page we are going to use. For now only in animal registration page:
+```cshtml
+@inject ShelterAnimalService AnimalService 
+```
+
+For now let's remove our "Remove Animal" button and method behind it. We will add this feature again but in different place.
+
+In animal registration page we have some logic that should be part of `ShelterAnimalService`. This component is responsible for animals and it should know the rules when we are allowed to add animal and when we are not allowed to do it. But to add this logic to our `ShelterAnimalService` we need to make use of `ShelterCalendarService` there too. Also we should have the capacity there too:
+
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace AnimalShelter.Data
+{
+    public class ShelterAnimalService
+    {
+        public readonly int AnimalCapacity = 20;
+
+        private readonly ShelterCalendarService _calendarService;
+
+        private List<string> _animals = new List<string>();
+
+        public ShelterAnimalService(ShelterCalendarService calendarService)
+        {
+            _calendarService = calendarService;
+        }
+    }
+}
+```
+
+We also need to expose our collection to the world but prevent others outside our class from editing it. Don't worry if you don't understand what is going on here. What you have to remember that you will be able to use `Animals` to access our collection outside this class.
+
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace AnimalShelter.Data
+{
+    public class ShelterAnimalService
+    {
+        public readonly int AnimalCapacity = 20;
+        private readonly ShelterCalendarService _calendarService;
+        private List<string> _animals = new List<string>();
+
+        public string[] Animals { get { return _animals.ToArray(); }}
+
+        public ShelterAnimalService(ShelterCalendarService calendarService)
+        {
+            _calendarService = calendarService;
+        }
+    }
+}
+```
+
+Now in animal registration page `@code` block add variable for storing currently entered animal name:
+
+```csharp
+private string _animalName;
+```
+
+Now we need to add text field to our page where user will enter animal name. `@bind="_animalName"` part is responsible for binding our `_animalName` variable with the text field. It means that value of `_animalName` will be the same as value entered to the text field:
+
+```cshtml
+<h2>Animal Information</h2>
+
+Name: <input type="text" @bind="_animalName"/><br/><br/>
+```
+
+Now everything is ready and you may proceed with the task.
+
+<details>
+<summary>Solution</summary>
+
+### Step 1
+Define a method in `ShelterAnimalService` for animal addition:
+
+```csharp
+public void AddAnimal(string name)
+{
+    _animals.Add(name);
+}
+```
+
+### Step 2
+Add logic we already had in animal registration page to prevent addition when not in business hours and when reached capacity.
+
+```csharp
+public void AddAnimal(string name)
+{
+    if (!_calendarService.IsShelterOpen())
+        return;
+
+    if (_animals.Count == AnimalCapacity)
+        return;
+
+    _animals.Add(name);
+}
+```
+
+### Step 3
+Add logic to prevent addition when there is already an animal with the same name in the list.
+
+```csharp
+public void AddAnimal(string name)
+{
+    if (!_calendarService.IsShelterOpen())
+        return;
+
+    if (_animals.Count == AnimalCapacity)
+        return;
+
+    if (_animals.Contains(name))
+        return;
+
+    _animals.Add(name);
+}
+```
+
+### Step 4
+Rewrite `AddAnimal` method in animal registration page to make use of the new method in the `ShelterAnimalService`:
+
+```csharp
+private void AddAnimal()
+{
+    AnimalService.AddAnimal(_animalName);
+}
+```
+
+### Step 5
+AnimalCapacity and animalCount in animal registration page are not relevant anymore. Remove them and rewrite `GetAnimalCountText` to make use of `ShelterAnimalService` to perform the task:
+
+```csharp
+private string GetAnimalCountText()
+{
+    var animalCount = AnimalService.Animals.Count();
+
+    if (animalCount == 0)
+    {
+        return "no";
+    }
+    else if (animalCount == AnimalService.AnimalCapacity)
+    {
+        return animalCount + " (full capacity)";
+    }
+    else
+    {
+        return animalCount.ToString();
+    }
+}
+```
+
+### Step 6
+Run the application
+
+</details>
+
+## Exercise 5.6: rewrite FetchData page to display list on our animals in the table. Make use of ShelterAnimalService there.
+
+<details>
+<summary>Solution</summary>
+
+### Step 1
+Rename `FetchData.razor` to `Animals.razor`. At the top of the page file change path of the page:
+
+```cshtml
+@page "/animals"
+```
+
+Don't forget to update menu:
+
+```cshtml
+<li class="nav-item px-3">
+    <NavLink class="nav-link" href="animals">
+        <span class="oi oi-list-rich" aria-hidden="true"></span> Animals
+    </NavLink>
+</li>
+```
+
+### Step 2
+Inject `ShelterAnimalService` into the page:
+
+```cshtml
+@using AnimalShelter.Data
+@inject ShelterAnimalService AnimalService
+```
+
+Update code block to get animals from the `ShelterAnimalService`:
+
+```cshtml
+@code {
+    private string[] animals;
+
+    protected override async Task OnInitializedAsync()
+    {
+        animals = AnimalService.Animals;
+    }
+}
+```
+
+### Step 3
+Update page to display table of animal names:
+
+```cshtml
+<h1>Animals</h1>
+
+<p>Here you can find a list of our animals.</p>
+
+@if (animals == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var animal in animals)
+            {
+                <tr>
+                    <td>@animal</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+```
+
+### Step 4
+Run the application
+
+</details>

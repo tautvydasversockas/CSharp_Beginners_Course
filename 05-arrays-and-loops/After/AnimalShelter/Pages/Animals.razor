@@ -1,0 +1,40 @@
+﻿@page "/animals"
+
+@using AnimalShelter.Data
+@inject ShelterAnimalService AnimalService
+
+<h1>Animals</h1>
+
+<p>Here you can find a list of our animals.</p>
+
+@if (animals == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var animal in animals)
+            {
+                <tr>
+                    <td>@animal</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private string[] animals;
+
+    protected override async Task OnInitializedAsync()
+    {
+        animals = AnimalService.Animals;
+    }
+}
