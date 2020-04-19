@@ -37,7 +37,7 @@ Dogs can have other features that make them different from other animals. Let's 
 ```csharp
 class Dog : Animal
 {
-    public bool IsLeashed { get; }
+    public bool IsLeashed { get; private set; }
     
     public Dog(string name) : base(name)
     {
@@ -54,6 +54,8 @@ class Dog : Animal
     }
 }
 ```
+Notice the `{ get; private set; }`. We can get the value of the `IsLeashed` property from the outside of the `Dog` class while we can only set it from the inside of the class.
+
 In the meantime, we can create a `Fox` class that has a name and can be petted (do not try this at home). Unlike the `Dog`, the `Fox` doesn't have a leash: 
 ```csharp
 class Fox : Animal
@@ -111,7 +113,7 @@ If we want we can override the method `Speak` in derived classes like this:
 ```csharp
 class Dog : Animal
 {
-    public bool IsLeashed { get; }
+    public bool IsLeashed { get; private set; }
     
     public Dog(string name) : base(name)
     {
@@ -167,7 +169,7 @@ interface ILeashed
 ```csharp
 class Dog : Animal, ILeashed
 {
-    public bool IsLeashed { get; }
+    public bool IsLeashed { get; private set; }
     
     public Dog(string name) : base(name)
     {
@@ -235,7 +237,7 @@ Create a class for a car:
 ```csharp
 class Car : Vehicle
 {
-    public bool IsRoofRemoved { get; }
+    public bool IsRoofRemoved { get; private set; }
     
     public void RemoveRoof()
     {
@@ -272,7 +274,7 @@ namespace MyApp
     
     class Car : Vehicle
     {
-        public bool IsRoofRemoved { get; }
+        public bool IsRoofRemoved { get; private set; }
 
         public void RemoveRoof()
         {
@@ -289,7 +291,7 @@ namespace MyApp
     {
         static void Main(string[] args)
         {
-            var motorcycle = new MotorCycle();
+            var motorcycle = new Motorcycle();
             motorcycle.Honk(); // "Honk"
             
             var car = new Car(); 
@@ -346,7 +348,7 @@ class Car : Vehicle
     {
     }
     
-    public bool IsRoofRemoved { get; }
+    public bool IsRoofRemoved { get; private set; }
     
     public void RemoveRoof()
     {
@@ -386,7 +388,7 @@ class Motorcycle : Vehicle, ITaxable
     
     public decimal GetTaxes()
     {
-        return Value * 0.05;
+        return Value * 0.05m;
     }
 }
 ```
@@ -397,7 +399,7 @@ class Car : Vehicle, ITaxable
     {
     }
     
-    public bool IsRoofRemoved { get; }
+    public bool IsRoofRemoved { get; private set; }
     
     public void RemoveRoof()
     {
@@ -411,7 +413,7 @@ class Car : Vehicle, ITaxable
     
     public decimal GetTaxes()
     {
-        return Value * 0.06;
+        return Value * 0.06m;
     }
 }
 ```
@@ -453,7 +455,7 @@ namespace MyApp
 
         public decimal GetTaxes()
         {
-            return Value * 0.05;
+            return Value * 0.05m;
         }
     }
     
@@ -463,7 +465,7 @@ namespace MyApp
         {
         }
 
-        public bool IsRoofRemoved { get; }
+        public bool IsRoofRemoved { get; private set; }
 
         public void RemoveRoof()
         {
@@ -477,7 +479,7 @@ namespace MyApp
 
         public decimal GetTaxes()
         {
-            return Value * 0.06;
+            return Value * 0.06m;
         }
     }
     
