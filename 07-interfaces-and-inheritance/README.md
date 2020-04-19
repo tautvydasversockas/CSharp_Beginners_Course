@@ -198,3 +198,302 @@ It is more important to understand the conceptual differences and when to use ea
 *When we talk about an interface and define capabilities that we promise to provide, we are talking about establishing a contract about what the object can do.*
 
 There are some more nitty-gritty details related to inheriting classes and implementing interfaces but this should be a good starting point for the exercises.
+
+## Exercise 7.1: create classes for a motorcycle and a car with a removable roof. Both types of vehicles can honk. A car with a removable roof can get its roof removed. Use inheritance.
+
+<details>
+<summary>Solution</summary>
+
+### Step 1
+
+Create a class for a vehicle:
+
+```csharp
+class Vehicle
+{
+    public void Honk()
+    {
+        Console.WriteLine("Honk");
+    }
+}
+```
+
+### Step 2
+
+Create a class for a motorcycle:
+
+```csharp
+class Motorcycle : Vehicle
+{
+}
+```
+
+### Step 3
+
+Create a class for a car:
+
+```csharp
+class Car : Vehicle
+{
+    public bool IsRoofRemoved { get; }
+    
+    public void RemoveRoof()
+    {
+        IsRoofRemoved = true;
+    }
+    
+    public void AddRoof()
+    {
+        IsRoofRemoved = false;
+    }
+}
+```
+
+### Step 4
+
+Try it out:
+
+```csharp
+using System;
+
+namespace MyApp
+{
+    class Vehicle
+    {
+        public void Honk()
+        {
+            Console.WriteLine("Honk");
+        }
+    }
+
+    class Motorcycle : Vehicle
+    {
+    }
+    
+    class Car : Vehicle
+    {
+        public bool IsRoofRemoved { get; }
+
+        public void RemoveRoof()
+        {
+            IsRoofRemoved = true;
+        }
+
+        public void AddRoof()
+        {
+            IsRoofRemoved = false;
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var motorcycle = new MotorCycle();
+            motorcycle.Honk(); // "Honk"
+            
+            var car = new Car(); 
+            car.Honk(); // "Honk"
+            
+            car.RemoveRoof();
+            Console.WriteLine(car.IsRoofRemoved); // true
+            
+            car.AddRoof();
+            Console.WriteLine(car.IsRoofRemoved); // false
+        }
+    }
+}
+```
+</details>
+
+## Exercise 7.2: motorcycles and cars from the exercise 7.1 are taxed. Motorcycles are taxed 5 % while cars - 6 %. Modify vehicles to have a monetary value. Create an interface for getting taxes.
+
+<details>
+<summary>Solution</summary>
+
+### Step 1
+
+Modify classes from the previous exercise to have a monetary value:
+
+```csharp
+class Vehicle
+{
+    public decimal Value { get; }
+    
+    public Vehicle(decimal value)
+    {
+        Value = value;  
+    }
+    
+    public void Honk()
+    {
+        Console.WriteLine("Honk");
+    }
+}
+```
+```csharp
+class Motorcycle : Vehicle
+{
+    public Motorcycle(decimal value) : base(value)
+    {
+    }
+}
+```
+```csharp
+class Car : Vehicle
+{
+    public Car(decimal value) : base(value)
+    {
+    }
+    
+    public bool IsRoofRemoved { get; }
+    
+    public void RemoveRoof()
+    {
+        IsRoofRemoved = true;
+    }
+    
+    public void AddRoof()
+    {
+        IsRoofRemoved = false;
+    }
+}
+```
+Notice the type `decimal`. It is recommended to use `decimal` instead of `double` for monetary calculations.
+
+### Step 2
+
+Create an interface for taxes:
+
+```csharp
+interface ITaxable
+{
+    decimal GetTaxes();
+}
+```
+Notice the `I` before `Taxable`. It is a common practice in C# to prefix interfaces with an `I`.
+
+### Step 3
+
+Implement the `ITaxable` interface:
+
+```csharp
+class Motorcycle : Vehicle, ITaxable
+{
+    public Motorcycle(decimal value) : base(value)
+    {
+    }
+    
+    public decimal GetTaxes()
+    {
+        return Value * 0.05;
+    }
+}
+```
+```csharp
+class Car : Vehicle, ITaxable
+{
+    public Car(decimal value) : base(value)
+    {
+    }
+    
+    public bool IsRoofRemoved { get; }
+    
+    public void RemoveRoof()
+    {
+        IsRoofRemoved = true;
+    }
+    
+    public void AddRoof()
+    {
+        IsRoofRemoved = false;
+    }
+    
+    public decimal GetTaxes()
+    {
+        return Value * 0.06;
+    }
+}
+```
+
+### Step 4
+
+Try it out:
+
+```csharp
+using System;
+
+namespace MyApp
+{
+    class Vehicle
+    {
+        public decimal Value { get; }
+
+        public Vehicle(decimal value)
+        {
+            Value = value;  
+        }
+
+        public void Honk()
+        {
+            Console.WriteLine("Honk");
+        }
+    }
+
+    interface ITaxable
+    {
+        decimal GetTaxes();
+    }
+
+    class Motorcycle : Vehicle, ITaxable
+    {
+        public Motorcycle(decimal value) : base(value)
+        {
+        }
+
+        public decimal GetTaxes()
+        {
+            return Value * 0.05;
+        }
+    }
+    
+    class Car : Vehicle, ITaxable
+    {
+        public Car(decimal value) : base(value)
+        {
+        }
+
+        public bool IsRoofRemoved { get; }
+
+        public void RemoveRoof()
+        {
+            IsRoofRemoved = true;
+        }
+
+        public void AddRoof()
+        {
+            IsRoofRemoved = false;
+        }
+
+        public decimal GetTaxes()
+        {
+            return Value * 0.06;
+        }
+    }
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ITaxable taxable = new Motorcycle(100);
+            Console.WriteLine(taxable.GetTaxes()); // 5
+            
+            taxable = new Car(100);
+            Console.WriteLine(taxable.GetTaxes()); // 6
+        }
+    }
+}
+```
+Notice that we use the same `ITaxable` type variable for a car and a motorcycle. We don't really care if it's a motorcycle or a car. As long as it is `ITaxable` we know that we can get taxes from it.
+
+</details>
