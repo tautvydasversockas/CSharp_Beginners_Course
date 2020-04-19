@@ -218,7 +218,7 @@ class School
 {
     private List<string> _studentNames = new List<string>();
     
-    public RegisterNewStudent(string name)
+    public void RegisterNewStudent(string name)
     {
         _studentNames.Add(name);
     }
@@ -231,6 +231,7 @@ Try it out:
 
 ```csharp
 using System;
+using System.Collections.Generic;
 
 namespace MyApp
 {
@@ -238,7 +239,7 @@ namespace MyApp
     {
         private List<string> _studentNames = new List<string>();
 
-        public RegisterNewStudent(string name)
+        public void RegisterNewStudent(string name)
         {
             _studentNames.Add(name);
         }
