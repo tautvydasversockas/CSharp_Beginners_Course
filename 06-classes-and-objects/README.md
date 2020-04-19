@@ -71,7 +71,194 @@ var name = person.Name; // "John"
 ```
 Of course, there is a lot more to classes than that however knowing what you know now is a good starting point and it should prepare you for the following exercises.
 
-## Exercise 6.n: create a class for animal. It should contain animal name, age, weight and registration date as properties. Add it to Data folder.
+## Exercise 6.1: create a class for a motivational quotes generator. The generator should be able to write motivational quotes. You can implement the method by writing a predefined quote to the console.
+
+<details>
+<summary>Solution</summary>
+
+### Step 1
+
+Create a motivational quotes generator class:
+
+```csharp
+class MotivationalQuotesGenerator
+{
+}
+```
+
+### Step 2
+
+Add a public method that writes a motivational quote to the console:
+
+```csharp
+class MotivationalQuotesGenerator
+{
+    public void WriteMotivationalQuote()
+    {
+        Console.WriteLine("If you feel unhappy start feeling happy instead!");
+    }
+}
+```
+Notice the `public` keyword - it allows us to call a method from the outside of a class.
+
+### Step 3
+
+Try it out:
+
+```csharp
+using System;
+
+namespace MyApp
+{
+    class MotivationalQuotesGenerator
+    {
+        public void WriteMotivationalQuote()
+        {
+            Console.WriteLine("If you feel unhappy start feeling happy instead!");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var generator = new MotivationalQuotesGenerator();
+            generator.WriteMotivationalQuote();
+        }
+    }
+}
+```
+
+Try to change the `public` keyword in the `WriteMotivationalQuote` method to `private`. See what happens.
+       
+</details>
+
+## Exercise 6.2: transform the class from the exercise 6.1 so that it could generate a motivational quote without creating a motivational quotes generator object.
+
+<details>
+<summary>Solution</summary>
+
+### Step 1
+
+The only thing that we have to do is mark the `WriteMotivationalQuote` method as `static`. The keyword `static` allows to call the method on the class itself, not on a specific object instance:
+
+```csharp
+class MotivationalQuotesGenerator
+{
+    public static void WriteMotivationalQuote()
+    {
+        Console.WriteLine("If you feel unhappy start feeling happy instead!");
+    }
+}
+```
+
+### Step 2
+
+Try it out:
+
+```csharp
+using System;
+
+namespace MyApp
+{
+    class MotivationalQuotesGenerator
+    {
+        public static void WriteMotivationalQuote()
+        {
+            Console.WriteLine("If you feel unhappy start feeling happy instead!");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            MotivationalQuotesGenerator.WriteMotivationalQuote();
+        }
+    }
+}
+```
+       
+</details>
+
+## Exercise 6.3: create a class for a school. The class should contain a list of student names. The list should not be accessible from the outside of the class. You should be able to register a new student to the school.
+
+<details>
+<summary>Solution</summary>
+
+### Step 1
+
+Create a class for a school:
+
+```csharp
+class School
+{
+}
+```
+
+### Step 2
+
+Add a field of a list of `string` type values (student names) to the class definition. Mark it as `private` so that it would not be accessible from the outside of the class. Assign an empty list to the field value:
+
+```csharp
+class School
+{
+    private List<string> _studentNames = new List<string>();
+}
+```
+
+Notice the `_` part in the student names field. We are following a widely used .NET fields naming convention by adding a `_` prefix to all private fields.
+
+### Step 3
+
+Add a method to register a new student:
+
+```csharp
+class School
+{
+    private List<string> _studentNames = new List<string>();
+    
+    public RegisterNewStudent(string name)
+    {
+        _studentNames.Add(name);
+    }
+}
+```
+    
+### Step 4
+
+Try it out:
+
+```csharp
+using System;
+
+namespace MyApp
+{
+    class School
+    {
+        private List<string> _studentNames = new List<string>();
+
+        public RegisterNewStudent(string name)
+        {
+            _studentNames.Add(name);
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var school = new School();
+            school.RegisterNewStudent("Josh");
+            school.RegisterNewStudent("Anthony");
+        }
+    }
+}
+```
+       
+</details>
+
+## Exercise 6.4: create a class for an animal. It should contain animal name, age, weight and registration date as properties. Add it to Data folder.
 
 <details>
 <summary>Solution</summary>
@@ -104,7 +291,7 @@ namespace AnimalShelter.Data
 
 </details>
 
-## Exercise 6.n: instead of accepting only name in animal registration page accept age and weight too. Use Animal class for it. Change ShelterAnimalService to work with the new setup. Make animals page display animal details in the table.
+## Exercise 6.5: instead of accepting only name in animal registration page accept age and weight too. Use Animal class for it. Change ShelterAnimalService to work with the new setup. Make animals page display animal details in the table.
 
 Let's do some preparations before the exercise. First of all, we need to collect input from the user. Last time we were able to bind string variable to the text field. You can also bind an object the same way to the input form.
 
