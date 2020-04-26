@@ -1,0 +1,81 @@
+﻿@page "/animalregistration"
+
+@using AnimalShelter.Data
+@inject ShelterCalendarService CalendarService
+@inject ShelterAnimalService AnimalService 
+
+<h1>Animal registration</h1>
+
+<p>At @DateTime.Today.ToShortDateString() we have @GetAnimalCountText() animals.</p>
+
+<h2>Animal Information</h2>
+
+<EditForm Model="@_currentAnimal">
+    <p>Name:<br/><InputText id="name" @bind-Value="_currentAnimal.Name" /></p>
+    <p>Age:<br/><InputNumber id="age" @bind-Value="_currentAnimal.Age" /></p>
+    <p>Weight:<br/><InputNumber id="weight" @bind-Value="_currentAnimal.Weight" /></p>
+
+    <p>
+        <select class="form-control" @bind="_selectedAnimalType" >
+            <option selected disabled value="">Choose animal type</option>
+            <option value="Dog">Dog</option>
+            <option value="Cat">Cat</option>
+        </select>
+    </p>
+
+    <button class="btn btn-primary" @onclick="AddAnimal">Add animal</button>
+</EditForm>
+
+@code {
+    private Animal _currentAnimal = new Animal();
+    private string _selectedAnimalType = string.Empty;
+
+    private string GetAnimalCountText()
+    {
+        var animalCount = AnimalService.Animals.Count();
+
+        if (animalCount == 0)
+        {
+            return "no";
+        }
+        else if (animalCount == AnimalService.AnimalCapacity)
+        {
+            return animalCount + " (full capacity)";
+        }
+        else
+        {
+            return animalCount.ToString();
+        }
+    }
+
+    private void AddAnimal()
+    {
+        Animal animalToCreate = null;
+
+        switch(_selectedAnimalType)
+        {
+            case "Dog":
+                animalToCreate = new Dog();
+                break;
+            case "Cat":
+                animalToCreate = new Cat();
+                break;
+        }
+
+        if (animalToCreate == null)
+            return;
+
+        animalToCreate.Age = _currentAnimal.Age;
+        animalToCreate.Name = _currentAnimal.Name;
+        animalToCreate.Weight = _currentAnimal.Weight;
+
+        AnimalService.AddAnimal(animalToCreate);
+        _currentAnimal = new Animal();
+        _selectedAnimalType = string.Empty;
+    }
+
+    private void OnAnimalTypeChange()
+    {
+
+    }
+}

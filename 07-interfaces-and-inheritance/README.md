@@ -499,3 +499,135 @@ namespace MyApp
 Notice that we use the same `ITaxable` type variable for a car and a motorcycle. We don't really care if it's a motorcycle or a car. As long as it is `ITaxable` we know that we can get taxes from it.
 
 </details>
+
+## Exercise 7.3: upgrade animal shelter system to accept various kinds of animals (dogs, cats, etc.). Display animal type in the table on Animals page. Inherit all animal types from base Animal class.
+
+To get animal type input from the user on animal registration page add variable which will hold animal type string entered by user:
+
+```csharp
+private string _selectedAnimalType = string.Empty;
+```
+
+And then add selection of animal type on the page binded to the variable declared before.
+
+```cshtml
+<p>
+    <select class="form-control" @bind="_selectedAnimalType" >
+        <option selected disabled value="">Choose animal type</option>
+        <option value="Dog">Dog</option>
+        <option value="Cat">Cat</option>
+    </select>
+</p>
+```
+
+Now you need to edit `AddAnimal` method and upgrade animals page to display animal type. Please note, that you are not allowed to just add string property to the animal type. You have to create separate classes derived from `Animal` for every animal type introduced.
+
+<details>
+<summary>Solution</summary>
+
+### Step 1
+
+In `Data` folder create classes for dogs and cats:
+
+```csharp
+namespace AnimalShelter.Data
+{
+    public class Dog : Animal
+    {
+
+    }
+}
+```
+
+```csharp
+namespace AnimalShelter.Data
+{
+    public class Cat : Animal
+    {
+
+    }
+}
+```
+
+`Dog` and `Cat` are derived from `Animal` so they will have all the properties from `Animal` class.
+
+### Step 2
+
+Now our `_currentAnimal` variable doesn't hold all the information needed to register an animal but it's still useful for holding some of the data so let's leave it as it is and update `AddAnimal` method.
+
+We need to build animal that is going to be sent to the shelter animal service. First step is to determine what kind of animal it will be. One of the ways to do this:
+
+```csharp
+Animal animalToCreate = null;
+
+switch(_selectedAnimalType)
+{
+    case "Dog":
+        animalToCreate = new Dog();
+        break;
+    case "Cat":
+        animalToCreate = new Cat();
+        break;
+}
+
+if (animalToCreate == null)
+    return;
+```
+
+At first we declare `animalToCreate` variable and then use switch statement to create instance of the right animal depending on `_selectedAnimalType` variable. In case we don't have `animalToCreate` initialized after switch we return because animal type was not selected.
+
+After we have animal that we are going to send initialized we need to copy information from `_currentAnimal`:
+
+```csharp
+animalToCreate.Age = _currentAnimal.Age;
+animalToCreate.Name = _currentAnimal.Name;
+animalToCreate.Weight = _currentAnimal.Weight;
+```
+
+Then we send our animal to the shelter animal service:
+
+```csharp
+AnimalService.AddAnimal(animalToCreate);
+```
+
+And end method by resetting input form on the page:
+
+```csharp
+_currentAnimal = new Animal();
+_selectedAnimalType = string.Empty;
+```
+
+### Step 3
+
+Now we need to display animal type on animals page. To do this we need a way to know the animal type from the animal variable. And the keyword `is` could help here. Let's add a method to get a string with animal type from an animal:
+
+```csharp
+private string AnimalToType(Animal animal)
+{
+    if (animal is Dog)
+        return "Dog";
+    if (animal is Cat)
+        return "Cat";
+    return "Unkown";
+}
+```
+
+### Step 4
+
+The final step is to update the table on animals page by adding a column to display animal type. To table columns definitions add:
+
+```cshtml
+<th>Animal Type</th>
+```
+
+And to column data defintions add:
+
+```cshtml
+<td>@AnimalToType(animal)</td>
+```
+
+### Step 5
+
+Run the application.
+
+</details>
